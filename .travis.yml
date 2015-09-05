@@ -7,11 +7,10 @@ before_script:
   - cd ..
   - git clone git://github.com/zendframework/ZendSkeletonApplication.git
   - cd ZendSkeletonApplication
-  - git rm --cached vendor/ZF2
   - cp ../UthandoDomPdf/.travis/composer.json ./
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install
-  - rm -rf vendor/dino/dompdf-module
+  - rm -rf vendor/uthando-cms/uthando-dompdf
   - cp -r ../UthandoDomPdf vendor/uthando-cms/uthando-dompdf
 
 script:
