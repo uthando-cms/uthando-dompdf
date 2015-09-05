@@ -1,0 +1,32 @@
+{
+  "name": "uthando-cms/uthando-dompdf",
+  "type": "library",
+  "description": "A Zend Framework 2 module for incorporating DOMPDF support.",
+  "keywords": ["pdf","dompdf", "zf2"],
+  "homepage": "http://shaunfreeman.name",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Raymond Kolbe",
+      "email": "raymond.kolbe@maine.edu"
+    },
+    {
+      "name": "Shaun Freeman",
+      "email": "shaun@shaunfreeman.co.uk",
+      "homepage": "https://github.com/shaunfreeman",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.0",
+    "dompdf/dompdf": "0.6.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "UthandoDomPdf": "src/"
+    },
+    "classmap": [
+      "./Module.php"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+<phpunit
+    bootstrap="./Bootstrap.php"
+    colors="true"
+    backupGlobals="false"
+>
+    <testsuites>
+        <testsuite name="UthandoDomPdf Test Suite">
+            <directory>./UthandoDomPdfTest</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
