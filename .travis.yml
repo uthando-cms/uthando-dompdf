@@ -7,10 +7,8 @@ before_script:
   - cd ..
   - git clone git://github.com/zendframework/ZendSkeletonApplication.git
   - cd ZendSkeletonApplication
-  - cp ../UthandoDomPdf/.travis/composer.json ./
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install
-  - rm -rf vendor/uthando-cms/uthando-dompdf
   - cp -r ../UthandoDomPdf vendor/uthando-cms/uthando-dompdf
 
 script:
