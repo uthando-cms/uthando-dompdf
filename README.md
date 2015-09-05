@@ -1,6 +1,8 @@
 DOMPDFModule
 ============
 
+Master : [![Build Status](https://travis-ci.org/uthando-cms/uthando-dompdf.svg?branch=master)](https://travis-ci.org/uthando-cms/uthando-dompdf)
+
 This project is a fork of Raymond Kolbe's ZF2 module, I have adapted it for Uthando CMS but it can be used independently.
 The UthandoDomPdf module integrates the DOMPDF library with Zend Framework 2 with minimal
 effort on the consumer's end.
