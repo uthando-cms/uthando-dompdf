@@ -1,4 +1,4 @@
-DOMPDFModule
+UthandoDomPdf
 ============
 
 [![Build Status](https://travis-ci.org/uthando-cms/uthando-dompdf.svg?branch=master)](https://travis-ci.org/uthando-cms/uthando-dompdf)
