@@ -2,9 +2,11 @@ UthandoDomPdf
 ============
 
 [![Build Status](https://travis-ci.org/uthando-cms/uthando-dompdf.svg?branch=master)](https://travis-ci.org/uthando-cms/uthando-dompdf)
+[![Dependency Status](https://www.versioneye.com/user/projects/55ed90c2211c6b0019001aa2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55ed90c2211c6b0019001aa2)
+[![Packagist](https://img.shields.io/packagist/v/uthando-cms/uthando-dompdf.svg)]()
 
-This project is a fork of Raymond Kolbe's ZF2 module, I have adapted it for Uthando CMS but it can be used independently.
-The UthandoDomPdf module integrates the DOMPDF library with Zend Framework 2 with minimal
+This project is based on https://github.com/raykolbe/DOMPDFModule.
+I have adapted it for Uthando CMS but it can be used independently. The UthandoDomPdf module integrates the DOMPDF library with Zend Framework 2 with minimal
 effort on the consumer's end.
 
 ## Requirements
@@ -35,7 +37,7 @@ PHP Composer, please visit the official [PHP Composer site](http://getcomposer.o
      'UthandoDomPdf',
      ```
 #### Configuration options
-You can override options via the `dompdf_module` key in your local or global config files. See UthandoDomPdf/config/module.config.php for config options.
+You can override options via the `uthando_dompdf` key in your local or global config files. See UthandoDomPdf/config/module.config.php.dist for config options.
 
 ## Usage
 
@@ -51,10 +53,11 @@ class ReportController extends AbstractActionController
 {
     public function monthlyReportPdfAction()
     {
-        $pdf = new PdfModel();
-        $pdf->setOption('filename', 'monthly-report'); // Triggers PDF download, automatically appends ".pdf"
-        $pdf->setOption('paperSize', 'a4'); // Defaults to "8x11"
-        $pdf->setOption('paperOrientation', 'landscape'); // Defaults to "portrait"
+        $pdf = $this->getServiceLocator()->get('PdfModel');
+        
+        $pdf->getPdfOptions()->setFilename('monthly-report'); // Triggers PDF download, automatically appends ".pdf"
+        $pdf->getPdfOptions()->setPaperSize('a4'); // Defaults to "8x11"
+        $pdf->getPdfOptions()->setPaperOrientation('landscape'); // Defaults to "portrait"
         
         // To set view variables
         $pdf->setVariables(array(
@@ -67,4 +70,5 @@ class ReportController extends AbstractActionController
 ```
 
 ## To-do
+  - Add Admin forms for options.
   - Add command line support.

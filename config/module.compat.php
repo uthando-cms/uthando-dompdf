@@ -12,7 +12,7 @@ mb_internal_encoding('UTF-8');
  * @var array
  */
 global $_dompdf_warnings;
-$_dompdf_warnings = array();
+$_dompdf_warnings = [];
 
 /**
  * If true, $_dompdf_warnings is dumped on script termination when using
@@ -40,4 +40,4 @@ $_dompdf_debug = false;
  * @var array
  */
 global $_DOMPDF_DEBUG_TYPES;
-$_DOMPDF_DEBUG_TYPES = array(); //array("page-break" => 1);
+$_DOMPDF_DEBUG_TYPES = []; //["page-break" => 1];

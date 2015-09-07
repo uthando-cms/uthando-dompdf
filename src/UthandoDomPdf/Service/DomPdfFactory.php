@@ -1,20 +1,11 @@
 <?php
-/*
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
- * @author Raymond J. Kolbe <raymond.kolbe@maine.edu>
- * @copyright Copyright (c) 2012 University of Maine
- * @license	http://www.opensource.org/licenses/mit-license.php MIT License
+ * @package   UthandoDomPdf\Options
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE.txt
  */
 
 namespace UthandoDomPdf\Service;
@@ -37,6 +28,13 @@ class DomPdfFactory implements FactoryInterface
      * @var array
      */
     private static $configCompatMapping = array(
+        'dir'                       => 'DOMPDF_DIR',
+        'inc_dir'                   => 'DOMPDF_INC_DIR',
+        'lib_dir'                   => 'DOMPDF_LIB_DIR',
+        'enable_autoload'           => 'DOMPDF_ENABLE_AUTOLOAD',
+        'autoload_prepend'          => 'DOMPDF_AUTOLOAD_PREPEND',
+        'admin_username'            => 'DOMPDF_ADMIN_USERNAME',
+        'admin_password'            => 'DOMPDF_ADMIN_PASSWORD',
         'font_directory'            => 'DOMPDF_FONT_DIR',
         'font_cache_directory'      => 'DOMPDF_FONT_CACHE',
         'temporary_directory'       => 'DOMPDF_TEMP_DIR',
@@ -59,7 +57,7 @@ class DomPdfFactory implements FactoryInterface
         'debug_keep_temp'           => 'DEBUGKEEPTEMP',
         'debug_css'                 => 'DEBUGCSS',
         'debug_layout'              => 'DEBUG_LAYOUT',
-        'debug_layout_links'        => 'DEBUG_LAYOUT_LINES',
+        'debug_layout_lines'        => 'DEBUG_LAYOUT_LINES',
         'debug_layout_blocks'       => 'DEBUG_LAYOUT_BLOCKS',
         'debug_layout_inline'       => 'DEBUG_LAYOUT_INLINE',
         'debug_layout_padding_box'  => 'DEBUG_LAYOUT_PADDINGBOX'
@@ -69,37 +67,13 @@ class DomPdfFactory implements FactoryInterface
      * Creates an instance of DOMPDF.
      * 
      * @param  ServiceLocatorInterface $serviceLocator 
-     * @return PdfRenderer
+     * @return DOMPDF
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = $serviceLocator->get('config');
-        $config = $config['dompdf_module'];
-        
-        if (defined('DOMPDF_DIR') === false) {
-            define("DOMPDF_DIR", './vendor/dompdf/dompdf');
-        }
-        
-        if (defined('DOMPDF_INC_DIR') === false) {
-            define("DOMPDF_INC_DIR", DOMPDF_DIR . "/include");
-        }
-        
-        if (defined('DOMPDF_LIB_DIR') === false) {
-            define("DOMPDF_LIB_DIR", DOMPDF_DIR . "/lib");
-        }
-
-        if (defined('DOMPDF_AUTOLOAD_PREPEND') === false) {
-            define("DOMPDF_AUTOLOAD_PREPEND", false);
-        }
-
-        if (defined('DOMPDF_ADMIN_USERNAME') === false) {
-            define("DOMPDF_ADMIN_USERNAME", false);
-        }
-
-        if (defined('DOMPDF_ADMIN_PASSWORD') === false) {
-            define("DOMPDF_ADMIN_PASSWORD", false);
-        }
-
+        /* @var \UthandoDomPdf\Options\DomPdfOptions $config */
+        $config = $serviceLocator->get('DomPdfOptions');
+        $config = $config->toArray();
         
         foreach ($config as $key => $value) {
             if (! array_key_exists($key, static::$configCompatMapping)) {

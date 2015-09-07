@@ -1,24 +1,17 @@
 <?php
-/*
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
- * @author Raymond J. Kolbe <raymond.kolbe@maine.edu>
- * @copyright Copyright (c) 2012 University of Maine
- * @license	http://www.opensource.org/licenses/mit-license.php MIT License
+ * @package   UthandoDomPdf\View\Model
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE.txt
  */
 
 namespace UthandoDomPdf\View\Renderer;
 
+use UthandoDomPdf\View\Model\PdfModel;
+use Zend\View\Model\ModelInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
 use Zend\View\Resolver\ResolverInterface as Resolver;
 use DOMPDF;
@@ -30,46 +23,73 @@ use DOMPDF;
  */
 class PdfRenderer implements Renderer
 {
-    private $dompdf = null;
-    private $resolver = null;
-    private $htmlRenderer = null;
-    
+    /**
+     * @var DOMPDF
+     */
+    private $dompdf;
+
+    /**
+     * @var Resolver
+     */
+    private $resolver;
+
+    /**
+     * @var Renderer
+     */
+    private $htmlRenderer;
+
+    /**
+     * @param Renderer $renderer
+     * @return $this
+     */
     public function setHtmlRenderer(Renderer $renderer)
     {
         $this->htmlRenderer = $renderer;
         return $this;
     }
-    
+
+    /**
+     * @return Renderer
+     */
     public function getHtmlRenderer()
     {
         return $this->htmlRenderer;
     }
-    
+
+    /**
+     * @param DOMPDF $dompdf
+     * @return $this
+     */
     public function setEngine(DOMPDF $dompdf)
     {
         $this->dompdf = $dompdf;
         return $this;
     }
-    
+
+    /**
+     * @return DOMPDF
+     */
     public function getEngine()
     {
         return $this->dompdf;
     }
-    
+
     /**
      * Renders values as a PDF
      *
-     * @param  string|Model $name The script/resource process, or a view model
+     * @param string|ModelInterface|PdfModel $nameOrModel
      * @param  null|array|\ArrayAccess Values to use during rendering
      * @return string The script output.
      */
     public function render($nameOrModel, $values = null)
     {
         $html = $this->getHtmlRenderer()->render($nameOrModel, $values);
+
+        $pdfOptions = $nameOrModel->getPdfOptions();
         
-        $paperSize = $nameOrModel->getOption('paperSize');
-        $paperOrientation = $nameOrModel->getOption('paperOrientation');
-        $basePath = $nameOrModel->getOption('basePath');
+        $paperSize = $pdfOptions->getPaperSize();
+        $paperOrientation = $pdfOptions->getPaperOrientation();
+        $basePath = $pdfOptions->getBasePath();
         
         $pdf = $this->getEngine();
         $pdf->set_paper($paperSize, $paperOrientation);
@@ -81,6 +101,10 @@ class PdfRenderer implements Renderer
         return $pdf->output();
     }
 
+    /**
+     * @param Resolver $resolver
+     * @return $this
+     */
     public function setResolver(Resolver $resolver)
     {
         $this->resolver = $resolver;

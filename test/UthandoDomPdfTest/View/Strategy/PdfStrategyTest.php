@@ -40,7 +40,7 @@ class PdfStrategyTest extends TestCase
     
     public function testContentTypeResponseHeader()
     {
-        $model = new PdfModel();
+        $model = $this->getServiceManager()->get('PdfModel');
         $model->setTemplate('basic.phtml');
         
         $this->event->setModel($model);
@@ -60,9 +60,10 @@ class PdfStrategyTest extends TestCase
     
     public function testResponseHeadersWithFileName()
     {
-        $model = new PdfModel();
+        $model = $this->getServiceManager()->get('PdfModel');
         $model->setTemplate('basic.phtml');
-        $model->setOption('filename', 'testPdfFileName');
+        $model->getPdfOptions()
+            ->setFilename('testPdfFileName');
         
         $this->event->setModel($model);
         $this->event->setResponse($this->response);
