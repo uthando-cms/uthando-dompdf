@@ -10,8 +10,9 @@ before_script:
   - git clone git://github.com/uthando-cms/uthando.git
   - cd uthando
   - curl -s http://getcomposer.org/installer | php
-  - cp ../uthando-dompdf/composer.json ./
-  - php composer.phar -n --no-dev install
+  - php composer.phar install --no-dev
+  - php composer.phar require --update-no-dev dompdf/dompdf:0.6.*
+  - php composer.phar require --update-no-dev uthando-cms/uthando-common:1.*
   - cp -R ../uthando-dompdf ./module/UthandoDomPdf
 
 script:
