@@ -2,6 +2,7 @@
 return [
     'modules' => [
         'Application',
+        'UthandoCommon',
         'UthandoDomPdf',
     ],
     'module_listener_options' => [

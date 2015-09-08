@@ -19,6 +19,16 @@
   ],
   "require": {
     "php": ">=5.5.0",
+    "zendframework/zend-config": "2.*",
+    "zendframework/zend-eventmanager": "2.*",
+    "zendframework/zend-http": "2.*",
+    "zendframework/zend-loader": "2.*",
+    "zendframework/zend-modulemanager": "2.*",
+    "zendframework/zend-mvc": "2.*",
+    "zendframework/zend-servicemanager": "2.*",
+    "zendframework/zend-stdlib": "2.*",
+    "zendframework/zend-view": "2.*",
+    "uthando-cms/uthando-common": "1.*",
     "dompdf/dompdf": "0.6.*"
   },
   "autoload": {

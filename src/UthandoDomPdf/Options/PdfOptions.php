@@ -19,6 +19,8 @@ use Zend\Stdlib\AbstractOptions;
  */
 class PdfOptions extends AbstractOptions
 {
+    const DEFAULT_PAGE_COUNTER_TEXT = 'Page {PAGE_NUM} of {PAGE_COUNT}';
+
     /**
      * @var string
      */
@@ -40,6 +42,18 @@ class PdfOptions extends AbstractOptions
     protected $fileName;
 
     /**
+     * This is an array of arrays each array should have values <text> <position> <font>
+     * example
+     *
+     *      array(
+     *          'text' => 'text to add',
+     *          'position' => 'center',
+     *          'font' => array(
+     *              'family' => 'serif',
+     *              'weight' => 'normal',
+     *          ),
+     *      )
+     *
      * @var array
      */
     protected $headerLines;
@@ -48,16 +62,6 @@ class PdfOptions extends AbstractOptions
      * @var array
      */
     protected $footerLines;
-
-    /**
-     * @var string
-     */
-    protected $positionPageCounter = 'none';
-
-    /**
-     * @var string
-     */
-    protected $textPageCounter = 'Page {PAGE_NUM} of {PAGE_COUNT}';
 
     /**
      * @return string
@@ -140,10 +144,21 @@ class PdfOptions extends AbstractOptions
     }
 
     /**
+     * @param array $headerLine
+     * @return $this
+     */
+    public function addHeaderLine(array $headerLine)
+    {
+
+        $this->headerLines[] = $headerLine;
+        return $this;
+    }
+
+    /**
      * @param array $headerLines
      * @return $this
      */
-    public function setHeaderLines($headerLines)
+    public function setHeaderLines(array $headerLines)
     {
         $this->headerLines = $headerLines;
         return $this;
@@ -161,45 +176,9 @@ class PdfOptions extends AbstractOptions
      * @param array $footerLines
      * @return $this
      */
-    public function setFooterLines($footerLines)
+    public function setFooterLines(array $footerLines)
     {
         $this->footerLines = $footerLines;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPositionPageCounter()
-    {
-        return $this->positionPageCounter;
-    }
-
-    /**
-     * @param string $positionPageCounter
-     * @return $this
-     */
-    public function setPositionPageCounter($positionPageCounter)
-    {
-        $this->positionPageCounter = $positionPageCounter;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTextPageCounter()
-    {
-        return $this->textPageCounter;
-    }
-
-    /**
-     * @param string $textPageCounter
-     * @return $this
-     */
-    public function setTextPageCounter($textPageCounter)
-    {
-        $this->textPageCounter = $textPageCounter;
         return $this;
     }
 }

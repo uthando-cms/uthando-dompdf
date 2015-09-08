@@ -24,7 +24,7 @@ PHP Composer, please visit the official [PHP Composer site](http://getcomposer.o
      ```json
      {
          "require": {
-             "uthando-cms/uthando-dompdf": "dev-master"
+             "uthando-cms/uthando-dompdf": "2.*"
          }
      }
      ```
@@ -41,33 +41,33 @@ You can override options via the `uthando_dompdf` key in your local or global co
 
 ## Usage
 
-```php
-<?php
-
-namespace Application\Controller;
-
-use Zend\Mvc\Controller\AbstractActionController;
-use UthandoDomPdf\View\Model\PdfModel;
-
-class ReportController extends AbstractActionController
-{
-    public function monthlyReportPdfAction()
+    ```php
+    <?php
+    
+    namespace Application\Controller;
+    
+    use Zend\Mvc\Controller\AbstractActionController;
+    use UthandoDomPdf\View\Model\PdfModel;
+    
+    class ReportController extends AbstractActionController
     {
-        $pdf = $this->getServiceLocator()->get('PdfModel');
-        
-        $pdf->getPdfOptions()->setFilename('monthly-report'); // Triggers PDF download, automatically appends ".pdf"
-        $pdf->getPdfOptions()->setPaperSize('a4'); // Defaults to "8x11"
-        $pdf->getPdfOptions()->setPaperOrientation('landscape'); // Defaults to "portrait"
-        
-        // To set view variables
-        $pdf->setVariables(array(
-          'message' => 'Hello'
-        ));
-        
-        return $pdf;
+        public function monthlyReportPdfAction()
+        {
+            $pdf = $this->getServiceLocator()->get('PdfModel');
+            
+            $pdf->getPdfOptions()->setFilename('monthly-report'); // Triggers PDF download, automatically appends ".pdf"
+            $pdf->getPdfOptions()->setPaperSize('a4'); // Defaults to "8x11"
+            $pdf->getPdfOptions()->setPaperOrientation('landscape'); // Defaults to "portrait"
+            
+            // To set view variables
+            $pdf->setVariables(array(
+              'message' => 'Hello'
+            ));
+            
+            return $pdf;
+        }
     }
-}
-```
+    ```
 
 ## To-do
   - Add Admin forms for options.

@@ -4,7 +4,7 @@ namespace UthandoDomPdfTest\Service;
 
 use UthandoDomPdfTest\Framework\TestCase;
 
-class PdfStrategyTest extends TestCase
+class DomPdfServiceTest extends TestCase
 {
     public function testUniqueInstancesFromFactory()
     {
