@@ -24,7 +24,7 @@ while (!file_exists('config/application.config.php')) {
 }
 
 if (is_readable(__DIR__ . '/TestConfiguration.php')) {
-    $configuration = include_once __DIR__ . '/TestConfig.php';
+    $configuration = include_once __DIR__ . '/TestConfiguration.php';
 } else {
     $configuration = include_once __DIR__ . '/TestConfig.php.dist';
 }
@@ -33,12 +33,11 @@ if (is_readable(__DIR__ . '/TestConfiguration.php')) {
 require_once 'vendor/autoload.php';
 
 // This namespace is not in classmap.
-$loader = new StandardAutoloader(
-                array(
-                    StandardAutoloader::LOAD_NS => array(
-                        'UthandoDomPdfTest' => __DIR__ . '/UthandoDomPdfTest'
-                    ),
-        ));
+$loader = new StandardAutoloader([
+    StandardAutoloader::LOAD_NS => [
+        'UthandoDomPdfTest' => __DIR__ . '/UthandoDomPdfTest'
+    ],
+]);
 
 $loader->register();
 

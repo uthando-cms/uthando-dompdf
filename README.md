@@ -3,7 +3,7 @@ UthandoDomPdf
 
 [![Build Status](https://travis-ci.org/uthando-cms/uthando-dompdf.svg?branch=master)](https://travis-ci.org/uthando-cms/uthando-dompdf)
 [![Dependency Status](https://www.versioneye.com/user/projects/55ed90c2211c6b0019001aa2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55ed90c2211c6b0019001aa2)
-[![Packagist](https://img.shields.io/packagist/v/uthando-cms/uthando-dompdf.svg)]()
+[![Packagist](https://img.shields.io/packagist/v/uthando-cms/uthando-dompdf.svg)](https://packagist.org/packages/uthando-cms/uthando-dompdf)
 
 This project is based on https://github.com/raykolbe/DOMPDFModule.
 I have adapted it for Uthando CMS but it can be used independently. The UthandoDomPdf module integrates the DOMPDF library with Zend Framework 2 with minimal
