@@ -12,10 +12,10 @@ before_script:
   - composer require --update-no-dev uthando-cms/uthando-common:1.*
   - composer require --update-no-dev codeclimate/php-test-reporter
   - cp -R ../uthando-dompdf ./module/UthandoDomPdf
+  - cd module/uthandoDomPdf/test
 
 script:
-  - cd module/UthandoDomPdf/test
-  - phpunit --coverage-text --coverage-clover ./build/logs/clover.xml
+  - phpunit
 
 after_script:
-  - CODECLIMATE_REPO_TOKEN=b09ba9b7374cf4893b84c0cd870d44ae26b070e0e85205ada90e27dc2c1c81f6 ../../../vendor/bin/test-reporter
+  - CODECLIMATE_REPO_TOKEN=b09ba9b7374cf4893b84c0cd870d44ae26b070e0e85205ada90e27dc2c1c81f6 ../../../vendor/bin/test-reporter --coverage-report=./build/logs/clover.xml
