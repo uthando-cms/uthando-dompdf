@@ -5,10 +5,6 @@ php:
   - 5.6
   - 7.0
 
-addons:
-  code_climate:
-    repo_token: b09ba9b7374cf4893b84c0cd870d44ae26b070e0e85205ada90e27dc2c1c81f6
-
 before_script:
   - cd ..
   - git clone git://github.com/uthando-cms/uthando.git
