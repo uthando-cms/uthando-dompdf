@@ -4,20 +4,22 @@ php:
   - 5.5
   - 5.6
   - 7.0
+  - hhvm
 
 before_script:
   - cd ..
   - git clone git://github.com/uthando-cms/uthando.git
   - cd uthando
-  - curl -s http://getcomposer.org/installer | php
-  - php composer.phar install
-  - php composer.phar require dompdf/dompdf:0.6.*
-  - php composer.phar require uthando-cms/uthando-common:1.*
+  - composer install --no-dev
+  - composer require --update-no-dev dompdf/dompdf:0.6.*
+  - composer require --update-no-dev uthando-cms/uthando-common:1.*
+  - composer require codeclimate/php-test-reporter
   - cp -R ../uthando-dompdf ./module/UthandoDomPdf
 
 script:
   - cd module/UthandoDomPdf/test
-  - phpunit --coverage-clover build/logs/clover.xml
+  - phpunit --coverage-text --coverage-clover build/logs/clover.xml
 
 after_script:
-  - vendor/bin/test-reporter
+  - CODECLIMATE_REPO_TOKEN="b09ba9b7374cf4893b84c0cd870d44ae26b070e0e85205ada90e27dc2c1c81f6" vendor/bin/test-reporter --stdout > codeclimate.json
+  - "sh -c 'if [ \"$TRAVIS_PHP_VERSION\" != \"hhvm\" ]; then curl -X POST -d @codeclimate.json -H \"Content-Type: application/json\" -H \"User-Agent: Code Climate (PHP Test Reporter v0.1.1)\" https://codeclimate.com/test_reports  ; fi'"
