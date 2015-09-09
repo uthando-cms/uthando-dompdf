@@ -12,7 +12,7 @@ before_script:
   - composer require --update-no-dev uthando-cms/uthando-common:1.*
   - composer require --update-no-dev codeclimate/php-test-reporter
   - cp -R ../uthando-dompdf ./module/UthandoDomPdf
-  - cd module/uthandoDomPdf/test
+  - cd module/UthandoDomPdf/test
 
 script:
   - phpunit
