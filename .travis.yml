@@ -18,4 +18,5 @@ script:
   - phpunit
 
 after_script:
-  - CODECLIMATE_REPO_TOKEN=b09ba9b7374cf4893b84c0cd870d44ae26b070e0e85205ada90e27dc2c1c81f6 ../../../vendor/bin/test-reporter --coverage-report=./build/logs/clover.xml
+  - cd ../../../
+  - ./vendor/bin/test-reporter --coverage-report=./build/logs/clover.xml

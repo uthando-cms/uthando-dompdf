@@ -12,15 +12,15 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true"> <!-- addUncoveredFilesFromWhitelist / processUncoveredFilesFromWhitelist  -->
             <directory>../src</directory>
-            <!--  any other directories you want to check -->
+            <!--  y other directories you want to check -->
         </whitelist>
     </filter>
 
     <logging>
-        <log type="coverage-html" target="./build/logs/codeCoverage" charset="UTF-8"
+        <log type="coverage-html" target="../../../build/logs/UthandoDomPdf" charset="UTF-8"
              yui="true" highlight="true"
              lowUpperBound="50" highLowerBound="80"/>
-        <log type="coverage-clover" target="./build/logs/clover.xml"/>
+        <log type="coverage-clover" target="../../../build/logs/clover-UthandoDomPdf.xml"/>
         <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
     </logging>
 </phpunit>
