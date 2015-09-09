@@ -13,7 +13,7 @@ before_script:
   - composer install --no-dev
   - composer require --update-no-dev dompdf/dompdf:0.6.*
   - composer require --update-no-dev uthando-cms/uthando-common:1.*
-  - composer require codeclimate/php-test-reporter
+  - composer require --update-no-dev codeclimate/php-test-reporter
   - cp -R ../uthando-dompdf ./module/UthandoDomPdf
 
 script:
