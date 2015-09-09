@@ -12,7 +12,6 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true"> <!-- addUncoveredFilesFromWhitelist / processUncoveredFilesFromWhitelist  -->
             <directory>../src</directory>
-            <!--  y other directories you want to check -->
         </whitelist>
     </filter>
 

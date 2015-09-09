@@ -27,7 +27,7 @@ class PdfModelFactoryTest extends TestCase
         $model = $factory->createService($this->getServiceManager());
 
         $this->assertInstanceOf('UthandoDomPdf\View\Model\PdfModel', $model);
-        // is PdfOptions set too.
+        // is PdfOptionsTest set too.
         $this->assertInstanceOf('UthandoDomPdf\Options\PdfOptions', $model->getPdfOptions());
     }
 }

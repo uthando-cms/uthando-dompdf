@@ -2,6 +2,8 @@ UthandoDomPdf
 ============
 
 [![Build Status](https://travis-ci.org/uthando-cms/uthando-dompdf.svg?branch=master)](https://travis-ci.org/uthando-cms/uthando-dompdf)
+[![Test Coverage](https://codeclimate.com/github/uthando-cms/uthando-dompdf/badges/coverage.svg)](https://codeclimate.com/github/uthando-cms/uthando-dompdf/coverage)
+[![Code Climate](https://codeclimate.com/github/uthando-cms/uthando-dompdf/badges/gpa.svg)](https://codeclimate.com/github/uthando-cms/uthando-dompdf)
 [![Dependency Status](https://www.versioneye.com/user/projects/55ed90c2211c6b0019001aa2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55ed90c2211c6b0019001aa2)
 [![Packagist](https://img.shields.io/packagist/v/uthando-cms/uthando-dompdf.svg)](https://packagist.org/packages/uthando-cms/uthando-dompdf)
 
@@ -41,7 +43,6 @@ You can override options via the `uthando_dompdf` key in your local or global co
 
 ## Usage
 
-    ```php
     <?php
     
     namespace Application\Controller;
@@ -67,7 +68,6 @@ You can override options via the `uthando_dompdf` key in your local or global co
             return $pdf;
         }
     }
-    ```
 
 ## To-do
   - Add Admin forms for options.

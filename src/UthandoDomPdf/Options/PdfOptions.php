@@ -10,6 +10,9 @@
 
 namespace UthandoDomPdf\Options;
 
+use UthandoDomPdf\Model\PdfFooterCollection;
+use UthandoDomPdf\Model\PdfHeaderCollection;
+use UthandoDomPdf\Model\PdfTextLine;
 use Zend\Stdlib\AbstractOptions;
 
 /**
@@ -42,24 +45,12 @@ class PdfOptions extends AbstractOptions
     protected $fileName;
 
     /**
-     * This is an array of arrays each array should have values <text> <position> <font>
-     * example
-     *
-     *      array(
-     *          'text' => 'text to add',
-     *          'position' => 'center',
-     *          'font' => array(
-     *              'family' => 'serif',
-     *              'weight' => 'normal',
-     *          ),
-     *      )
-     *
-     * @var array
+     * @var PdfHeaderCollection
      */
     protected $headerLines;
 
     /**
-     * @var array
+     * @var PdfFooterCollection
      */
     protected $footerLines;
 
@@ -136,7 +127,7 @@ class PdfOptions extends AbstractOptions
     }
 
     /**
-     * @return array
+     * @return PdfHeaderCollection
      */
     public function getHeaderLines()
     {
@@ -144,10 +135,10 @@ class PdfOptions extends AbstractOptions
     }
 
     /**
-     * @param array $headerLine
+     * @param array|PdfTextLine $headerLine
      * @return $this
      */
-    public function addHeaderLine(array $headerLine)
+    public function addHeaderLine($headerLine)
     {
 
         $this->headerLines[] = $headerLine;
@@ -155,17 +146,28 @@ class PdfOptions extends AbstractOptions
     }
 
     /**
-     * @param array $headerLines
+     * @param array|PdfHeaderCollection $headerLines
      * @return $this
      */
-    public function setHeaderLines(array $headerLines)
+    public function setHeaderLines($headerLines)
     {
         $this->headerLines = $headerLines;
         return $this;
     }
 
     /**
-     * @return array
+     * @param array|PdfTextLine $footerLine
+     * @return $this
+     */
+    public function addFooterLine($footerLine)
+    {
+
+        $this->footerLines[] = $footerLine;
+        return $this;
+    }
+
+    /**
+     * @return PdfFooterCollection
      */
     public function getFooterLines()
     {
@@ -173,10 +175,10 @@ class PdfOptions extends AbstractOptions
     }
 
     /**
-     * @param array $footerLines
+     * @param array|PdfFooterCollection $footerLines
      * @return $this
      */
-    public function setFooterLines(array $footerLines)
+    public function setFooterLines($footerLines)
     {
         $this->footerLines = $footerLines;
         return $this;
