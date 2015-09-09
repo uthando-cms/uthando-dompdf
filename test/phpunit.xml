@@ -8,4 +8,23 @@
             <directory>./UthandoDomPdfTest</directory>
         </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist > <!-- addUncoveredFilesFromWhitelist / processUncoveredFilesFromWhitelist  -->
+            <directory>../src</directory>
+            <!--  any other directories you want to check -->
+        </whitelist>
+        <blacklist>
+            <directory>../../UthandoCommon</directory>
+            <directory>../../../module/Application</directory>
+            <directory>../../../vendor</directory>
+        </blacklist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="./log/codeCoverage" charset="UTF-8"
+             yui="true" highlight="true"
+             lowUpperBound="50" highLowerBound="80"/>
+        <log type="testdox-html" target="./log/testdox.html" />
+    </logging>
 </phpunit>
