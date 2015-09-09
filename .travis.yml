@@ -18,8 +18,8 @@ before_script:
 
 script:
   - cd module/UthandoDomPdf/test
-  - phpunit --coverage-text --coverage-clover build/logs/clover.xml
+  - phpunit --coverage-text --coverage-clover ./build/logs/clover.xml
 
 after_script:
-  - CODECLIMATE_REPO_TOKEN="b09ba9b7374cf4893b84c0cd870d44ae26b070e0e85205ada90e27dc2c1c81f6" vendor/bin/test-reporter --stdout > codeclimate.json
+  - CODECLIMATE_REPO_TOKEN=b09ba9b7374cf4893b84c0cd870d44ae26b070e0e85205ada90e27dc2c1c81f6 ../../../vendor/bin/test-reporter --stdout > codeclimate.json
   - "sh -c 'if [ \"$TRAVIS_PHP_VERSION\" != \"hhvm\" ]; then curl -X POST -d @codeclimate.json -H \"Content-Type: application/json\" -H \"User-Agent: Code Climate (PHP Test Reporter v0.1.1)\" https://codeclimate.com/test_reports  ; fi'"
