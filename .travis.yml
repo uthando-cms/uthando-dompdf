@@ -5,16 +5,23 @@ php:
   - 5.6
   - 7.0
 
+addons:
+  code_climate:
+    repo_token: b09ba9b7374cf4893b84c0cd870d44ae26b070e0e85205ada90e27dc2c1c81f6
+
 before_script:
   - cd ..
   - git clone git://github.com/uthando-cms/uthando.git
   - cd uthando
   - curl -s http://getcomposer.org/installer | php
-  - php composer.phar install --no-dev
-  - php composer.phar require --update-no-dev dompdf/dompdf:0.6.*
-  - php composer.phar require --update-no-dev uthando-cms/uthando-common:1.*
+  - php composer.phar install
+  - php composer.phar require dompdf/dompdf:0.6.*
+  - php composer.phar require uthando-cms/uthando-common:1.*
   - cp -R ../uthando-dompdf ./module/UthandoDomPdf
 
 script:
   - cd module/UthandoDomPdf/test
   - phpunit
+
+after_script:
+  - vendor/bin/test-reporter
