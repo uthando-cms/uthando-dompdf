@@ -37,7 +37,7 @@ class PdfStrategyTest extends TestCase
         $result = $this->strategy->selectRenderer($this->event);
         $this->assertSame($this->renderer, $result);
     }
-    
+
     public function testContentTypeResponseHeader()
     {
         $model = $this->getServiceManager()->get('PdfModel');
@@ -57,7 +57,7 @@ class PdfStrategyTest extends TestCase
         $this->assertEquals($contentTypeHeader->getFieldValue(), 'application/pdf');
         ob_end_flush();
     }
-    
+
     public function testResponseHeadersWithFileName()
     {
         $model = $this->getServiceManager()->get('PdfModel');

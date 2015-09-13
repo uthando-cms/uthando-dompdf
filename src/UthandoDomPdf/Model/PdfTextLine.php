@@ -33,6 +33,24 @@ class PdfTextLine
     protected $font;
 
     /**
+     * @param array $array
+     */
+    public function __construct(array $array = [])
+    {
+        if (isset($array['text'])) {
+            $this->setText($array['text']);
+        }
+
+        if (isset($array['position'])) {
+            $this->setPosition($array['position']);
+        }
+
+        if (isset($array['font'])) {
+            $this->setFont($array['font']);
+        }
+    }
+
+    /**
      * @return string
      */
     public function getText()

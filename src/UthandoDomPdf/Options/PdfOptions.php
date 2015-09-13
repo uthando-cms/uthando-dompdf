@@ -14,6 +14,7 @@ use UthandoDomPdf\Model\PdfFooterCollection;
 use UthandoDomPdf\Model\PdfHeaderCollection;
 use UthandoDomPdf\Model\PdfTextLine;
 use Zend\Stdlib\AbstractOptions;
+use Zend\Stdlib\Exception\InvalidArgumentException;
 
 /**
  * Class PdfOptions
@@ -135,34 +136,12 @@ class PdfOptions extends AbstractOptions
     }
 
     /**
-     * @param array|PdfTextLine $headerLine
-     * @return $this
-     */
-    public function addHeaderLine($headerLine)
-    {
-
-        $this->headerLines[] = $headerLine;
-        return $this;
-    }
-
-    /**
      * @param array|PdfHeaderCollection $headerLines
      * @return $this
      */
     public function setHeaderLines($headerLines)
     {
         $this->headerLines = $headerLines;
-        return $this;
-    }
-
-    /**
-     * @param array|PdfTextLine $footerLine
-     * @return $this
-     */
-    public function addFooterLine($footerLine)
-    {
-
-        $this->footerLines[] = $footerLine;
         return $this;
     }
 
@@ -180,7 +159,18 @@ class PdfOptions extends AbstractOptions
      */
     public function setFooterLines($footerLines)
     {
+        if (is_array($footerLines)) {
+            $footerLines = new PdfFooterCollection($footerLines);
+        }
+
+        if (!$footerLines instanceof PdfFooterCollection) {
+            throw new InvalidArgumentException(
+                'you must only use an array or an instance of UthandoDomPdf\Model\PdfFooterCollection'
+            );
+        }
+
         $this->footerLines = $footerLines;
+
         return $this;
     }
 }

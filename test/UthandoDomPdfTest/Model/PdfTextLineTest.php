@@ -27,6 +27,25 @@ class PdfTextLineTest extends TestCase
         $this->model = $model;
     }
 
+    public function testConstructor()
+    {
+        $data = [
+            'text' => 'This is a test',
+            'position' => 'center',
+            'font' => [
+                'family' => 'Times-New',
+                'weight' => 'bold',
+            ],
+
+        ];
+
+        $model = new PdfTextLine($data);
+
+        $this->assertSame($data['text'], $model->getText());
+        $this->assertSame($data['position'], $model->getPosition());
+        $this->assertInstanceOf('UthandoDomPdf\Model\PdfTextLineFont', $model->getFont());
+    }
+
     public function testSetGetText()
     {
         $this->model->setText('This is a test');
