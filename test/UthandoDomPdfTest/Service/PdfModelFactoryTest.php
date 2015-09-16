@@ -17,14 +17,14 @@ class PdfModelFactoryTest extends TestCase
 {
     public function testCanCreateInstanceFromServiceManager()
     {
-        $model = $this->getServiceManager()->get('PdfModel');
+        $model = $this->serviceManager->get('PdfModel');
         $this->assertInstanceOf('UthandoDomPdf\View\Model\PdfModel', $model);
     }
 
     public function testPdfModelInstanceCreation()
     {
         $factory = new PdfModelFactory();
-        $model = $factory->createService($this->getServiceManager());
+        $model = $factory->createService($this->serviceManager);
 
         $this->assertInstanceOf('UthandoDomPdf\View\Model\PdfModel', $model);
         // is PdfOptionsTest set too.

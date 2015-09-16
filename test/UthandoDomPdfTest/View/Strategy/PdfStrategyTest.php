@@ -15,6 +15,7 @@ class PdfStrategyTest extends TestCase
 {
     public function setUp()
     {
+        parent::setUp();
         $this->renderer = new PdfRenderer();
         $this->strategy = new PdfStrategy($this->renderer);
         $this->event    = new ViewEvent();
@@ -28,7 +29,7 @@ class PdfStrategyTest extends TestCase
         $htmlRenderer = new PhpRenderer();
         $htmlRenderer->setResolver($this->resolver);
         $this->renderer->setHtmlRenderer($htmlRenderer);
-        $this->renderer->setEngine($this->getServiceManager()->get('dompdf'));
+        $this->renderer->setEngine($this->serviceManager->get('dompdf'));
     }
 
     public function testPdfModelSelectsPdfStrategy()
@@ -40,7 +41,7 @@ class PdfStrategyTest extends TestCase
 
     public function testContentTypeResponseHeader()
     {
-        $model = $this->getServiceManager()->get('PdfModel');
+        $model = $this->serviceManager->get('PdfModel');
         $model->setTemplate('basic.phtml');
         
         $this->event->setModel($model);
@@ -60,7 +61,7 @@ class PdfStrategyTest extends TestCase
 
     public function testResponseHeadersWithFileName()
     {
-        $model = $this->getServiceManager()->get('PdfModel');
+        $model = $this->serviceManager->get('PdfModel');
         $model->setTemplate('basic.phtml');
         $model->getPdfOptions()
             ->setFilename('testPdfFileName');

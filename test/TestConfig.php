@@ -16,5 +16,8 @@ return [
     ],
     'service_manager' => [
         'use_defaults' => true,
+        'invokables' => [
+            'ModuleRouteListener' => 'Zend\Mvc\ModuleRouteListener',
+        ],
     ],
 ];

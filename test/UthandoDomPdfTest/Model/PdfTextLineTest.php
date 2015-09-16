@@ -23,6 +23,7 @@ class PdfTextLineTest extends TestCase
 
     public function setUp()
     {
+        parent::setUp();
         $model = new PdfTextLine();
         $this->model = $model;
     }

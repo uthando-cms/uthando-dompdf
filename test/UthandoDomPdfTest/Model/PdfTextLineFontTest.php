@@ -14,6 +14,7 @@ class PdfTextLineFontTest extends TestCase
 
     public function setUp()
     {
+        parent::setUp();
         $model = new PdfTextLineFont();
         $this->model = $model;
     }
@@ -55,7 +56,7 @@ class PdfTextLineFontTest extends TestCase
 
     public function testRenderFontMetricsReturnsString()
     {
-        $dompdf = $this->getServiceManager()->get('dompdf');
+        $dompdf = $this->serviceManager->get('dompdf');
 
         $fontString = $this->model->renderMetric();
         $this->assertSame($fontString, DOMPDF_FONT_DIR . 'Helvetica');

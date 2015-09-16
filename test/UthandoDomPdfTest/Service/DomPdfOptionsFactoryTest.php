@@ -17,14 +17,14 @@ class DomPdfOptionsFactoryTest extends TestCase
 {
     public function testCanCreateInstanceFromServiceManager()
     {
-        $model = $this->getServiceManager()->get('DomPdfOptions');
+        $model = $this->serviceManager->get('DomPdfOptions');
         $this->assertInstanceOf('UthandoDomPdf\Options\DomPdfOptions', $model);
     }
 
     public function testDomPdfOptionsInstanceCreation()
     {
         $factory = new DomPdfOptionsFactory();
-        $model = $factory->createService($this->getServiceManager());
+        $model = $factory->createService($this->serviceManager);
         $this->assertInstanceOf('UthandoDomPdf\Options\DomPdfOptions', $model);
     }
 }

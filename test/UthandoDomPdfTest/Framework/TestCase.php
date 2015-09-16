@@ -2,20 +2,15 @@
 
 namespace UthandoDomPdfTest\Framework;
 
-use PHPUnit_Framework_TestCase;
-use Zend\ServiceManager\ServiceManager;
+use UthandoDomPdfTest\Bootstrap;
 
-class TestCase extends PHPUnit_Framework_TestCase
+class TestCase extends \PHPUnit_Framework_TestCase
 {
-    protected static $serviceManager = null;
-    
-    public static function setServiceManager(ServiceManager $sm)
+    protected $serviceManager;
+
+    protected function setUp()
     {
-        self::$serviceManager = $sm;
+        $this->serviceManager = Bootstrap::getServiceManager();
     }
-    
-    public function getServiceManager()
-    {
-    	return self::$serviceManager;
-    }
+
 }
