@@ -21,4 +21,4 @@ after_script:
   - cd ../
   - cp -R ../../build ./build
   - cp -R ../../vendor ./vendor
-  - php vendor/bin/test-reporter --coverage-report=build/logs/clover-UthandoDomPdf.xml
+  - php vendor/bin/test-reporter --coverage-report=build/logs/clover.xml
