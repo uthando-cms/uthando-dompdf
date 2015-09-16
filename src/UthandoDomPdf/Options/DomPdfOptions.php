@@ -132,7 +132,7 @@ class DomPdfOptions extends AbstractOptions
      * should be an absolute path.
      * This is only checked on command line call by dompdf.php, but not by
      * direct class use like:
-     * $dompdf = new DOMPDF();	$dompdf->load_html($htmldata); $dompdf->render(); $pdfdata = $dompdf->output();
+     * $dompdf = new DOMPDF();    $dompdf->load_html($htmldata); $dompdf->render(); $pdfdata = $dompdf->output();
      *
      * @var string
      */
@@ -401,7 +401,7 @@ class DomPdfOptions extends AbstractOptions
      *
      * @var bool
      */
-    protected $debugLayoutPaddingBox  = false;
+    protected $debugLayoutPaddingBox = false;
 
     /**
      * @return string
@@ -471,7 +471,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setEnableAutoload($enableAutoload)
     {
-        $this->enableAutoload = (bool) $enableAutoload;
+        $this->enableAutoload = (bool)$enableAutoload;
         return $this;
     }
 
@@ -570,10 +570,6 @@ class DomPdfOptions extends AbstractOptions
      */
     public function getTemporaryDirectory()
     {
-        if (is_writable($this->temporaryDirectory)) {
-           return sys_get_temp_dir();
-        }
-
         return $this->temporaryDirectory;
     }
 
@@ -583,6 +579,9 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setTemporaryDirectory($temporaryDirectory)
     {
+        if (!is_writable($temporaryDirectory)) {
+            $temporaryDirectory = sys_get_temp_dir();
+        }
         $this->temporaryDirectory = $temporaryDirectory;
         return $this;
     }
@@ -637,7 +636,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setEnableFontsubsetting($enableFontsubsetting)
     {
-        $this->enableFontsubsetting = (bool) $enableFontsubsetting;
+        $this->enableFontsubsetting = (bool)$enableFontsubsetting;
         return $this;
     }
 
@@ -763,7 +762,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setEnablePhp($enablePhp)
     {
-        $this->enablePhp = (bool) $enablePhp;
+        $this->enablePhp = (bool)$enablePhp;
         return $this;
     }
 
@@ -781,7 +780,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setEnableJavascript($enableJavascript)
     {
-        $this->enableJavascript = (bool) $enableJavascript;
+        $this->enableJavascript = (bool)$enableJavascript;
         return $this;
     }
 
@@ -799,7 +798,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setEnableRemote($enableRemote)
     {
-        $this->enableRemote = (bool) $enableRemote;
+        $this->enableRemote = (bool)$enableRemote;
         return $this;
     }
 
@@ -835,7 +834,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setFontHeightRatio($fontHeightRatio)
     {
-        $this->fontHeightRatio = (float) $fontHeightRatio;
+        $this->fontHeightRatio = (float)$fontHeightRatio;
         return $this;
     }
 
@@ -853,7 +852,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setEnableCssFloat($enableCssFloat)
     {
-        $this->enableCssFloat = (bool) $enableCssFloat;
+        $this->enableCssFloat = (bool)$enableCssFloat;
         return $this;
     }
 
@@ -871,7 +870,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setEnableHtml5parser($enableHtml5parser)
     {
-        $this->enableHtml5parser = (bool) $enableHtml5parser;
+        $this->enableHtml5parser = (bool)$enableHtml5parser;
         return $this;
     }
 
@@ -889,7 +888,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setDebugPng($debugPng)
     {
-        $this->debugPng = (bool) $debugPng;
+        $this->debugPng = (bool)$debugPng;
         return $this;
     }
 
@@ -907,7 +906,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setDebugKeepTemp($debugKeepTemp)
     {
-        $this->debugKeepTemp = (bool) $debugKeepTemp;
+        $this->debugKeepTemp = (bool)$debugKeepTemp;
         return $this;
     }
 
@@ -925,7 +924,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setDebugCss($debugCss)
     {
-        $this->debugCss = (bool) $debugCss;
+        $this->debugCss = (bool)$debugCss;
         return $this;
     }
 
@@ -943,7 +942,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setDebugLayout($debugLayout)
     {
-        $this->debugLayout = (bool) $debugLayout;
+        $this->debugLayout = (bool)$debugLayout;
         return $this;
     }
 
@@ -961,7 +960,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setDebugLayoutLines($debugLayoutLines)
     {
-        $this->debugLayoutLines = (bool) $debugLayoutLines;
+        $this->debugLayoutLines = (bool)$debugLayoutLines;
         return $this;
     }
 
@@ -979,7 +978,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setDebugLayoutBlocks($debugLayoutBlocks)
     {
-        $this->debugLayoutBlocks = (bool) $debugLayoutBlocks;
+        $this->debugLayoutBlocks = (bool)$debugLayoutBlocks;
         return $this;
     }
 
@@ -997,7 +996,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setDebugLayoutInline($debugLayoutInline)
     {
-        $this->debugLayoutInline = (bool) $debugLayoutInline;
+        $this->debugLayoutInline = (bool)$debugLayoutInline;
         return $this;
     }
 
@@ -1015,7 +1014,7 @@ class DomPdfOptions extends AbstractOptions
      */
     public function setDebugLayoutPaddingBox($debugLayoutPaddingBox)
     {
-        $this->debugLayoutPaddingBox = (bool) $debugLayoutPaddingBox;
+        $this->debugLayoutPaddingBox = (bool)$debugLayoutPaddingBox;
         return $this;
     }
 }

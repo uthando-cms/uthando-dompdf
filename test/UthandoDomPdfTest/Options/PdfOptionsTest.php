@@ -11,9 +11,8 @@
 namespace UthandoDomPdfTest\Options;
 
 use UthandoDomPdf\Options\PdfOptions;
-use UthandoDomPdfTest\Framework\TestCase;
 
-class PdfOptionsTest extends TestCase
+class PdfOptionsTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var PdfOptions
