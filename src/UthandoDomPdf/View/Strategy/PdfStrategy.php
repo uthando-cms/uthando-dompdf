@@ -15,6 +15,7 @@ use UthandoDomPdf\View\Model;
 use UthandoDomPdf\View\Renderer\PdfRenderer;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
+use Zend\EventManager\ListenerAggregateTrait;
 use Zend\View\ViewEvent;
 
 /**
@@ -24,10 +25,7 @@ use Zend\View\ViewEvent;
  */
 class PdfStrategy implements ListenerAggregateInterface
 {
-    /**
-     * @var \Zend\Stdlib\CallbackHandler[]
-     */
-    protected $listeners = array();
+    use ListenerAggregateTrait;
 
     /**
      * @var PdfRenderer
@@ -58,21 +56,6 @@ class PdfStrategy implements ListenerAggregateInterface
     }
 
     /**
-     * Detach aggregate listeners from the specified event manager
-     *
-     * @param  EventManagerInterface $events
-     * @return void
-     */
-    public function detach(EventManagerInterface $events)
-    {
-        foreach ($this->listeners as $index => $listener) {
-            if ($events->detach($listener)) {
-                unset($this->listeners[$index]);
-            }
-        }
-    }
-
-    /**
      * Detect if we should use the PdfRenderer based on model type
      *
      * @param  ViewEvent $e
@@ -98,6 +81,7 @@ class PdfStrategy implements ListenerAggregateInterface
     public function injectResponse(ViewEvent $e)
     {
         $renderer = $e->getRenderer();
+
         if ($renderer !== $this->renderer) {
             // Discovered renderer is not ours; do nothing
             return;

@@ -2,6 +2,7 @@
 
 namespace UthandoDomPdfTest\View\Strategy;
 
+use Zend\View\Model\ViewModel;
 use Zend\View\Resolver\TemplatePathStack;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\View\ViewEvent;
@@ -13,6 +14,31 @@ use UthandoDomPdf\View\Strategy\PdfStrategy;
 
 class PdfStrategyTest extends TestCase
 {
+    /**
+     * @var PdfRenderer
+     */
+    protected $renderer;
+
+    /**
+     * @var PdfStrategy
+     */
+    protected $stategy;
+
+    /**
+     * @var ViewEvent
+     */
+    protected $event;
+
+    /**
+     * @var HttpResponse
+     */
+    protected $response;
+
+    /**
+     * @var TemplatePathStack
+     */
+    protected $resolver;
+
     public function setUp()
     {
         parent::setUp();
@@ -37,6 +63,23 @@ class PdfStrategyTest extends TestCase
         $this->event->setModel(new PdfModel());
         $result = $this->strategy->selectRenderer($this->event);
         $this->assertSame($this->renderer, $result);
+
+        $this->event->setModel(new ViewModel());
+        $result = $this->strategy->selectRenderer($this->event);
+        $this->assertNull($result);
+    }
+
+    public function testInjectResponseWithWrongRendererAndResponse()
+    {
+        $this->event->setRenderer($this->renderer);
+        $this->event->setResult(new ViewModel());
+        $result = $this->strategy->injectResponse($this->event);
+        $this->assertNull($result);
+
+        $this->event->setRenderer($this->renderer->getHtmlRenderer());
+        $this->event->setResult(new ViewModel());
+        $result = $this->strategy->injectResponse($this->event);
+        $this->assertNull($result);
     }
 
     public function testContentTypeResponseHeader()
