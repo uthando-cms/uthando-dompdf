@@ -8,6 +8,9 @@ return [
     'module_listener_options' => [
         'config_cache_enabled' => false,
         'cache_dir'            => 'data/cache',
+        'config_glob_paths' => [
+            __DIR__ . '/autoload/{,*.}{global,local}.php',
+        ],
         'module_paths' => [
             './vendor',
             './devmodules',

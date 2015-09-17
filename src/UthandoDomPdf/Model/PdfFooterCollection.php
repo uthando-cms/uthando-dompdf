@@ -19,18 +19,34 @@ use UthandoCommon\Model\AbstractCollection;
  */
 class PdfFooterCollection extends AbstractCollection
 {
+    /**
+     * @var string
+     */
     protected $entityClass = 'UthandoDomPdf\Model\PdfTextLine';
 
+    /**
+     * @param array $array
+     */
     public function __construct($array = [])
     {
-        $this->addFooterLine($array);
+        $this->addFooterLines($array);
     }
 
-    public function addFooterLines()
+    /**
+     * @param array $footerLines
+     */
+    public function addFooterLines(array $footerLines)
     {
-
+        foreach ($footerLines as $line) {
+            $this->addFooterLine($line);
+        }
     }
 
+    /**
+     * @param $footerLine
+     * @return $this
+     * @throws \UthandoCommon\Model\CollectionException
+     */
     public function addFooterLine($footerLine)
     {
         if ($footerLine instanceof PdfTextLine) {

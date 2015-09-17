@@ -48,4 +48,48 @@ class PdfOptionsTest extends \PHPUnit_Framework_TestCase
         $this->model->setFileName('somefile.pdf');
         $this->assertSame('somefile.pdf', $this->model->getFileName());
     }
+
+    public function testSetGetHeaderLines()
+    {
+        $data = [
+            [
+                'text' => 'some text',
+                'position' => 'center',
+                'font' => [
+                    'family' => 'Helvetica',
+                    'weight' => 'normal',
+                ],
+            ],
+        ];
+
+        $this->model->setHeaderLines($data);
+        $this->assertInstanceOf('UthandoDomPdf\Model\PdfHeaderCollection', $this->model->getHeaderLines());
+
+        $this->setExpectedException('Zend\Stdlib\Exception\InvalidArgumentException');
+
+        $this->model->setHeaderLines('invailid data');
+        $this->fail('Expected exception "Zend\Stdlib\Exception\InvalidArgumentException" not thrown');
+    }
+
+    public function testSetGetFooterLines()
+    {
+        $data = [
+            [
+                'text' => 'some text',
+                'position' => 'center',
+                'font' => [
+                    'family' => 'Helvetica',
+                    'weight' => 'normal',
+                ],
+            ],
+        ];
+
+        $this->model->setFooterLines($data);
+        $this->assertInstanceOf('UthandoDomPdf\Model\PdfFooterCollection', $this->model->getFooterLines());
+
+        $this->setExpectedException('Zend\Stdlib\Exception\InvalidArgumentException');
+
+        $this->model->setFooterLines('invailid data');
+        $this->fail('Expected exception "Zend\Stdlib\Exception\InvalidArgumentException" not thrown');
+    }
 }

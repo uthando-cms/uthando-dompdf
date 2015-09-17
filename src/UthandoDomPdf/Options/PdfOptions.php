@@ -12,7 +12,6 @@ namespace UthandoDomPdf\Options;
 
 use UthandoDomPdf\Model\PdfFooterCollection;
 use UthandoDomPdf\Model\PdfHeaderCollection;
-use UthandoDomPdf\Model\PdfTextLine;
 use Zend\Stdlib\AbstractOptions;
 use Zend\Stdlib\Exception\InvalidArgumentException;
 
@@ -141,7 +140,18 @@ class PdfOptions extends AbstractOptions
      */
     public function setHeaderLines($headerLines)
     {
+        if (is_array($headerLines)) {
+            $headerLines = new PdfHeaderCollection($headerLines);
+        }
+
+        if (!$headerLines instanceof PdfHeaderCollection) {
+            throw new InvalidArgumentException(
+                'you must only use an array or an instance of UthandoDomPdf\Model\PdfHeaderCollection'
+            );
+        }
+
         $this->headerLines = $headerLines;
+
         return $this;
     }
 
