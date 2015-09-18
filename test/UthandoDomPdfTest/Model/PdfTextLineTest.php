@@ -36,8 +36,8 @@ class PdfTextLineTest extends TestCase
             'font' => [
                 'family' => 'Times-New',
                 'weight' => 'bold',
+                'size'   => 8,
             ],
-
         ];
 
         $model = new PdfTextLine($data);
@@ -57,6 +57,13 @@ class PdfTextLineTest extends TestCase
     {
         $this->model->setPosition('center');
         $this->assertSame('center', $this->model->getPosition());
+
+        // test exception is called with illegal option
+        $this->setExpectedException('InvalidArgumentException');
+
+        $this->model->setPosition('top');//if this method not throw exception it must be fail too.
+
+        $this->fail('Expected exception "Zend\Stdlib\Exception\InvalidArgumentException" not thrown');
     }
 
     public function testSetGetFont()

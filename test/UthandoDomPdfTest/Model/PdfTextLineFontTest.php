@@ -24,25 +24,18 @@ class PdfTextLineFontTest extends TestCase
         $data = [
             'family' => 'Times-New',
             'weight' => 'bold',
+            'size'   => 10,
         ];
 
         $model = new PdfTextLineFont($data);
 
         $this->assertSame($data['family'], $model->getFamily());
         $this->assertSame($data['weight'], $model->getWeight());
-    }
-
-    public function testSetGetFamily()
-    {
-        $this->model->setFamily('Times-New');
-        $this->assertSame('Times-New', $this->model->getFamily());
+        $this->assertSame($data['size'], $model->getSize());
     }
 
     public function testSetGetWeight()
     {
-        $this->model->setWeight('bold');
-        $this->assertSame('bold', $this->model->getWeight());
-
         // test exception is called with illegal option
         $this->setExpectedException(
             'InvalidArgumentException',

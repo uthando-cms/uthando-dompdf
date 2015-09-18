@@ -58,6 +58,7 @@ class PdfOptionsTest extends \PHPUnit_Framework_TestCase
                 'font' => [
                     'family' => 'Helvetica',
                     'weight' => 'normal',
+                    'size'   => 8,
                 ],
             ],
         ];

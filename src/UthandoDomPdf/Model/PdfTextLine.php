@@ -10,6 +10,8 @@
 
 namespace UthandoDomPdf\Model;
 
+use Zend\Stdlib\Exception\InvalidArgumentException;
+
 /**
  * Class PdfTextLine
  *
@@ -31,6 +33,13 @@ class PdfTextLine
      * @var PdfTextLineFont
      */
     protected $font;
+
+    /**
+     * @var array
+     */
+    private $allowedPositions = [
+        'center', 'left', 'right',
+    ];
 
     /**
      * @param array $array
@@ -82,6 +91,11 @@ class PdfTextLine
      */
     public function setPosition($position)
     {
+        if (!in_array($position, $this->allowedPositions)) {
+            $positions = implode(', ', $this->allowedPositions);
+            throw new InvalidArgumentException('"' . $position . '" must be one of ' . $positions . ' called in "' . __METHOD__ . '"');
+        }
+
         $this->position = $position;
         return $this;
     }

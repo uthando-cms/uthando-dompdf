@@ -25,6 +25,11 @@ class PdfFooterCollection extends AbstractCollection
     protected $entityClass = 'UthandoDomPdf\Model\PdfTextLine';
 
     /**
+     * @var bool
+     */
+    protected $sorted = false;
+
+    /**
      * @param array $array
      */
     public function __construct($array = [])
@@ -59,5 +64,19 @@ class PdfFooterCollection extends AbstractCollection
         }
 
         return $this;
+    }
+
+    /**
+     * Make sure we have the cart items in the right order
+     * reorder the cart by [category - sku]
+     */
+    public function rewind()
+    {
+        if (!$this->sorted) {
+            $this->entities = array_reverse($this->entities);
+            $this->sorted = true;
+        }
+
+        parent::rewind();
     }
 }

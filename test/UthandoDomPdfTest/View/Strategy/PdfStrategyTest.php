@@ -108,6 +108,48 @@ class PdfStrategyTest extends TestCase
         $model->setTemplate('basic.phtml');
         $model->getPdfOptions()
             ->setFilename('testPdfFileName');
+
+        $model->getPdfOptions()->setFooterLines([
+            [
+                'text'      => 'top line',
+                'position'  => 'center',
+                'font' => [
+                    'family'    => 'Helvetica',
+                    'weight'    => 'normal',
+                    'size'      => 8,
+                ],
+            ],
+            [
+                'text'      => 'second line',
+                'position'  => 'left',
+                'font' => [
+                    'family'    => 'Helvetica',
+                    'weight'    => 'normal',
+                    'size'      => 8,
+                ],
+            ],
+            [
+                'text'      => 'third line',
+                'position'  => 'right',
+                'font' => [
+                    'family'    => 'Helvetica',
+                    'weight'    => 'normal',
+                    'size'      => 8,
+                ],
+            ],
+        ]);
+
+        $model->getPdfOptions()->setHeaderLines([
+            [
+                'text'      => 'first line',
+                'position'  => 'center',
+                'font' => [
+                    'family'    => 'Helvetica',
+                    'weight'    => 'normal',
+                    'size'      => 8,
+                ],
+            ],
+        ]);
         
         $this->event->setModel($model);
         $this->event->setResponse($this->response);

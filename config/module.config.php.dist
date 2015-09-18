@@ -9,8 +9,6 @@ return [
             'filename' => '',
             'header_lines' => [],
             'footer_lines' => [],
-            'position_page_counter' => 'none',
-            'text_page_counter' => 'Page {PAGE_NUM} of {PAGE_COUNT}',
         ],
         'dompdf_options' => [
             /**

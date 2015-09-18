@@ -10,6 +10,7 @@
 
 namespace UthandoDomPdf\View\Renderer;
 
+use UthandoCommon\Model\AbstractCollection;
 use UthandoDomPdf\Options\PdfOptions;
 use UthandoDomPdf\View\Model\PdfModel;
 use Zend\View\Model\ModelInterface;
@@ -84,35 +85,24 @@ class PdfRenderer implements Renderer
      */
     public function render($nameOrModel, $values = null)
     {
-        $html = $this->getHtmlRenderer()->render($nameOrModel, $values);
-
-        $pdfOptions = $nameOrModel->getPdfOptions();
-        
-        $paperSize = $pdfOptions->getPaperSize();
-        $paperOrientation = $pdfOptions->getPaperOrientation();
-        $basePath = $pdfOptions->getBasePath();
+        $pdfOptions         = $nameOrModel->getPdfOptions();
+        $paperSize          = $pdfOptions->getPaperSize();
+        $paperOrientation   = $pdfOptions->getPaperOrientation();
+        $basePath           = $pdfOptions->getBasePath();
         
         $pdf = $this->getEngine();
         $pdf->set_paper($paperSize, $paperOrientation);
         $pdf->set_base_path($basePath);
-        
+
+        $html = $this->getHtmlRenderer()->render($nameOrModel, $values);
+
         $pdf->load_html($html);
         $pdf->render();
 
-        $this->processHeader($pdf, $pdfOptions);
-        $this->processFooter($pdf, $pdfOptions);
-        
-        return $pdf->output();
-    }
+        $pdf = $this->processHeader($pdf, $pdfOptions);
+        $pdf = $this->processFooter($pdf, $pdfOptions);
 
-    /**
-     * @param Resolver $resolver
-     * @return $this
-     */
-    public function setResolver(Resolver $resolver)
-    {
-        $this->resolver = $resolver;
-        return $this;
+        return $pdf->output();
     }
 
     /**
@@ -126,7 +116,7 @@ class PdfRenderer implements Renderer
             return $pdf;
         }
 
-
+        return $this->processPageLines($pdf, $pdfOptions->getHeaderLines(), 'header');
     }
 
     /**
@@ -140,59 +130,74 @@ class PdfRenderer implements Renderer
             return $pdf;
         }
 
-        $pageWidth      = $pdf->get_canvas()->get_width();
-        $pageHeight     = $pdf->get_canvas()->get_height();
-        $footerLines    = array_reverse($pdfOptions->getFooterLines());
-
-        foreach ($footerLines as $footerLine) {
-
-        }
-
+        return $this->processPageLines($pdf, $pdfOptions->getFooterLines(), 'footer');
     }
 
     /**
-     * Calculates coordinates x and y where the text in the header/footer (property) where will be printed
-     *
-     * @param string $position The fixed position
-     * @param integer $page_width The width of page
-     * @param integer $page_height The height of page
-     * @param string $width_text The width value calculated of 'textPageCounter' (property)
-     * @return array
+     * @param DOMPDF $pdf
+     * @param AbstractCollection $pageLines
+     * @param $position
+     * @return DOMPDF
      */
-    private function calculatePosition($position, $page_width, $page_height, $width_text)
+    private function processPageLines(DOMPDF $pdf, AbstractCollection $pageLines, $position)
     {
-        switch ($position)
-        {
-            case 'top-center':
-                $yPage = 15;
-                $xPage = ($page_width / 2) - ($width_text / 2);
+        $canvas         = $pdf->get_canvas();
+        $pageWidth      = $canvas->get_width();
+        $pageHeight     = ('header' === $position) ? 0 : $canvas->get_height();
+        $previousHeight = 5; // margin
+        $pageCount      = $canvas->get_page_count();
+        $pageNumberMap  = ['/{PAGE_COUNT}/', '/{PAGE_NUM}/',];
+
+        /* @var $line \UthandoDomPdf\Model\PdfTextLine */
+        foreach ($pageLines as $line) {
+            $font           = $line->getFont()->renderMetric();
+            $size           = $line->getFont()->getSize();
+            $text           = $line->getText();
+            $fontHeight     = \Font_Metrics::get_font_height($font, $size);
+            $textWidth      = $canvas->get_text_width(
+                preg_replace($pageNumberMap, $pageCount, $text), $font, $size
+            );
+
+            if ('header' === $position) {
+                $startY = ($pageHeight + $previousHeight) + $fontHeight;
+            } else {
+                $startY = ($pageHeight - $previousHeight) - $fontHeight;
+            }
+
+            $startX = $this->getPosition($pageWidth, $textWidth, $line->getPosition());
+
+            $canvas->page_text($startX, $startY, $text, $font, $size, [0,0,0]);
+
+            $previousHeight += $fontHeight + 1; // +1 is the line spacing
+        }
+
+        return $pdf;
+    }
+
+    private function getPosition($pageWidth, $textWidth, $position)
+    {
+        switch ($position) {
+            case 'left':
+                $startX = 5;
                 break;
-            case 'top-left':
-                $yPage = 15;
-                $xPage = 15;
-                break;
-            case 'top-right':
-                $yPage = 15;
-                $xPage = ($page_width - 15) - $width_text;
-                break;
-            case 'bottom-left':
-                $yPage = $page_height - 24;
-                $xPage = 15;
-                break;
-            case 'bottom-center':
-                $yPage = $page_height - 24;
-                $xPage = ($page_width / 2) - ($width_text / 2);
-                break;
-            case 'bottom-right':
-                $yPage = $page_height - 24;
-                $xPage = ($page_width - 15) - $width_text;
+            case 'right':
+                $startX = ($pageWidth - $textWidth) - 5;
                 break;
             default:
-                $yPage = $page_height - 24;
-                $xPage = ($page_width - 15) - $width_text;
+                $startX = ($pageWidth - $textWidth) / 2;
                 break;
         }
 
-        return ['xPage' => $xPage, 'yPage' => $yPage];
+        return $startX;
+    }
+
+    /**
+     * @param Resolver $resolver
+     * @return $this
+     */
+    public function setResolver(Resolver $resolver)
+    {
+        $this->resolver = $resolver;
+        return $this;
     }
 }

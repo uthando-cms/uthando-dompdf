@@ -33,6 +33,11 @@ class PdfTextLineFont
     protected $weight = 'normal';
 
     /**
+     * @var int
+     */
+    protected $size = 8;
+
+    /**
      * @var array
      */
     private $allowedWeights = [
@@ -50,6 +55,10 @@ class PdfTextLineFont
 
         if (isset($font['weight'])) {
             $this->setWeight($font['weight']);
+        }
+
+        if (isset($font['size'])) {
+            $this->setSize($font['size']);
         }
     }
 
@@ -101,6 +110,24 @@ class PdfTextLineFont
         }
 
         $this->weight = $weight;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * @param int $size
+     * @return $this
+     */
+    public function setSize($size)
+    {
+        $this->size = (int) $size;
         return $this;
     }
 }
