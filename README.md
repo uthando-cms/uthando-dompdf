@@ -43,60 +43,60 @@ You can override options via the `uthando_dompdf` key in your local or global co
 
 ## Usage
 
-  ```php
-    <?php
-    
-    namespace Application\Controller;
-    
-    use Zend\Mvc\Controller\AbstractActionController;
-    use UthandoDomPdf\View\Model\PdfModel;
-    
-    class ReportController extends AbstractActionController
+```php
+<?php
+
+namespace Application\Controller;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use UthandoDomPdf\View\Model\PdfModel;
+
+class ReportController extends AbstractActionController
+{
+    public function monthlyReportPdfAction()
     {
-        public function monthlyReportPdfAction()
-        {
-            $pdf = $this->getServiceLocator()->get('PdfModel');
-            
-            $pdf->getPdfOptions()->setFilename('monthly-report'); // Triggers PDF download, automatically appends ".pdf"
-            $pdf->getPdfOptions()->setPaperSize('a4'); // Defaults to "8x11"
-            $pdf->getPdfOptions()->setPaperOrientation('landscape'); // Defaults to "portrait"
-            
-            // set footer/header on every page, this is an array of arrays. Each array represents one line of text
-            // to set header lines use the setHeaderLines() method
-            $pdf->getPdfOptions()->setFooterLines([
-                [
-                    'text'      => 'top line', // text to print
-                    'position'  => 'center', // alignment of text can be center, left or right
-                    'font' => [
-                        'family'    => 'Helvetica', // font family
-                        'weight'    => 'normal', // font weight can be normal, bold, italic or bold_italic
-                        'size'      => 8, // size of font in pt
-                    ],
+        $pdf = $this->getServiceLocator()->get('PdfModel');
+        
+        $pdf->getPdfOptions()->setFilename('monthly-report'); // Triggers PDF download, automatically appends ".pdf"
+        $pdf->getPdfOptions()->setPaperSize('a4'); // Defaults to "8x11"
+        $pdf->getPdfOptions()->setPaperOrientation('landscape'); // Defaults to "portrait"
+        
+        // set footer/header on every page, this is an array of arrays. Each array represents one line of text
+        // to set header lines use the setHeaderLines() method
+        $pdf->getPdfOptions()->setFooterLines([
+            [
+                'text'      => 'top line', // text to print
+                'position'  => 'center', // alignment of text can be center, left or right
+                'font' => [
+                    'family'    => 'Helvetica', // font family
+                    'weight'    => 'normal', // font weight can be normal, bold, italic or bold_italic
+                    'size'      => 8, // size of font in pt
                 ],
-            ]);
-            
-            // example showing how to set header lines
-            $pdf->getPdfOptions()->setHeaderLines([
-                [
-                    'text'      => 'top line', // text to print
-                    'position'  => 'center', // alignment of text can be center, left or right
-                    'font' => [
-                        'family'    => 'Helvetica', // font family
-                        'weight'    => 'normal', // font weight can be normal, bold, italic or bold_italic
-                        'size'      => 8, // size of font in pt
-                    ],
+            ],
+        ]);
+        
+        // example showing how to set header lines
+        $pdf->getPdfOptions()->setHeaderLines([
+            [
+                'text'      => 'top line', // text to print
+                'position'  => 'center', // alignment of text can be center, left or right
+                'font' => [
+                    'family'    => 'Helvetica', // font family
+                    'weight'    => 'normal', // font weight can be normal, bold, italic or bold_italic
+                    'size'      => 8, // size of font in pt
                 ],
-            ]);
-            
-            // To set view variables
-            $pdf->setVariables(array(
-              'message' => 'Hello'
-            ));
-            
-            return $pdf;
-        }
+            ],
+        ]);
+        
+        // To set view variables
+        $pdf->setVariables(array(
+          'message' => 'Hello'
+        ));
+        
+        return $pdf;
     }
-  ```
+}
+```
 
 ## To-do
   - Add Admin forms for options.
