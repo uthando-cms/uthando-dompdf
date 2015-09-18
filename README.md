@@ -43,7 +43,7 @@ You can override options via the `uthando_dompdf` key in your local or global co
 
 ## Usage
 
-    ```php
+  ```php
     <?php
     
     namespace Application\Controller;
@@ -96,7 +96,7 @@ You can override options via the `uthando_dompdf` key in your local or global co
             return $pdf;
         }
     }
-    ```
+  ```
 
 ## To-do
   - Add Admin forms for options.
