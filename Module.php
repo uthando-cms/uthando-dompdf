@@ -1,23 +1,18 @@
 <?php
-/*
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
- * @author Raymond J. Kolbe <raymond.kolbe@maine.edu>
- * @copyright Copyright (c) 2012 University of Maine
- * @license	http://www.opensource.org/licenses/mit-license.php MIT License
+ * @package   Settings
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE.txt
  */
 
 namespace UthandoDomPdf;
+
+use Zend\ModuleManager\ModuleEvent;
+use Zend\ModuleManager\ModuleManager;
+use Zend\Stdlib\ArrayUtils;
 
 /**
  * Class Module
@@ -26,6 +21,32 @@ namespace UthandoDomPdf;
  */
 class Module
 {
+    public function init(ModuleManager $moduleManager)
+    {
+        $events = $moduleManager->getEventManager();
+
+        // Registering a listener at default priority, 1, which will trigger
+        // after the ConfigListener merges config.
+        $events->attach(ModuleEvent::EVENT_MERGE_CONFIG, [$this, 'onMergeConfig']);
+    }
+
+    public function onMergeConfig(ModuleEvent $e)
+    {
+        $configListener = $e->getConfigListener();
+        $config         = $configListener->getMergedConfig(false);
+
+        // Modify the configuration; here, we'll remove a specific key:
+        if (isset($config['load_uthando_configs']) && true === $config['load_uthando_configs']) {
+            $routes         = include __DIR__ . '/config/uthando-routes.config.php';
+            $acl            = include __DIR__ . '/config/uthando-user.config.php';
+            $navigation     = include __DIR__ . '/config/uthando-navigation.config.php';
+            $dompdfConfig   = array_merge($routes, $navigation, $acl);
+            $config         = ArrayUtils::merge($config, $dompdfConfig);
+        }
+
+        // Pass the changed configuration back to the listener:
+        $configListener->setMergedConfig($config);
+    }
     /**
      * @return array
      */
@@ -36,12 +57,10 @@ class Module
     
     public function getAutoloaderConfig()
     {
-        return array(
-            'Zend\Loader\StandardAutoloader' => [
-                'namespaces' => [
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ],
+        return [
+            'Zend\Loader\ClassMapAutoloader' => [
+                __DIR__ . '/autoload_classmap.php'
             ],
-        );
+        ];
     }
 }

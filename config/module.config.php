@@ -1,10 +1,17 @@
 <?php
 
 return [
-    'view_manager' => [
-        'strategies' => [
-            'ViewPdfStrategy'
-        ]
+    'controllers' => [
+        'invokables' => [
+            'UthandoDomPdf\Controller\Settings' => 'UthandoDomPdf\Mvc\Controller\Settings',
+        ],
+    ],
+    'form_elements' => [
+        'invokables' => [
+            'DomPdfOptionsFieldSet' => 'UthandoDomPdf\Form\DomPdfOptionsFieldSet',
+            'PdfOptionsFieldSet'    => 'UthandoDomPdf\Form\PdfOptionsFieldSet',
+            'DomPdfSettings'        => 'UthandoDomPdf\Form\DomPdfSettings',
+        ],
     ],
     'service_manager' => [
         'shared' => [
@@ -21,5 +28,11 @@ return [
             'ViewPdfRenderer'   => 'UthandoDomPdf\Mvc\Service\ViewPdfRendererFactory',
             'ViewPdfStrategy'   => 'UthandoDomPdf\Mvc\Service\ViewPdfStrategyFactory',
         ]
+    ],
+    'view_manager' => [
+        'strategies' => [
+            'ViewPdfStrategy'
+        ],
+        'template_map' => include __DIR__  .'/../template_map.php',
     ],
 ];
