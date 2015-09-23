@@ -53,8 +53,8 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
                     'class' => 'col-md-4',
                 ],
                 'value_options' => [
-                    'portrait'   => 'portrait',
-                    'landscape'  => 'landscape',
+                    'portrait'   => 'Portrait',
+                    'landscape'  => 'Landscape',
                 ],
                 'column-size' => 'md-8',
             ],
@@ -87,6 +87,36 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
 
     public function getInputFilterSpecification()
     {
-        return [];
+        return [
+            'paper_size' => [
+                'required' => true,
+                'filters' => [
+                    ['name' => 'StringTrim'],
+                    ['name' => 'StripTags'],
+                ],
+            ],
+            'paper_orientation' => [
+                'required' => true,
+                'filters' => [
+                    ['name' => 'StringTrim'],
+                    ['name' => 'StripTags'],
+                ],
+            ],
+            'base_path' => [
+                'required' => false,
+                'filters' => [
+                    ['name' => 'StringTrim'],
+                    ['name' => 'StripTags'],
+                ],
+            ],
+            'file_name' => [
+                'required' => false,
+                'filters' => [
+                    ['name' => 'StringTrim'],
+                    ['name' => 'StripTags'],
+                    ['name' => 'ToNull'],
+                ],
+            ],
+        ];
     }
 }

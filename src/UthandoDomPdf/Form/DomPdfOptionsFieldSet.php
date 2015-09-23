@@ -13,7 +13,7 @@ namespace UthandoDomPdf\Form;
 use UthandoDomPdf\Options\DomPdfOptions;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods;
+use Zend\Hydrator\ClassMethods;
 
 /**
  * Class DomPdfOptionsFieldSet
@@ -22,6 +22,10 @@ use Zend\Stdlib\Hydrator\ClassMethods;
  */
 class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterface
 {
+    /**
+     * @param null $name
+     * @param array $options
+     */
     public function __construct($name = null, $options = [])
     {
         parent::__construct($name, $options);
@@ -30,155 +34,15 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
             ->setObject(new DomPdfOptions());
     }
 
+    /**
+     * Set up form elements
+     */
     public function init()
     {
         $this->add([
-            'name' => 'dir',
-            'type' => 'text',
-            'options'       => [
-                'label' => 'DOMPDF Install Directory',
-                'column-size' => 'md-8',
-                'label_attributes' => [
-                    'class' => 'col-md-4',
-                ],
-            ],
-            'attributes' => [
-                'readonly' => true,
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'inc_dir',
-            'type' => 'text',
-            'options'       => [
-                'label' => 'DOMPDF Include directory',
-                'column-size' => 'md-8',
-                'label_attributes' => [
-                    'class' => 'col-md-4',
-                ],
-            ],
-            'attributes' => [
-                'readonly' => true,
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'lib_dir',
-            'type' => 'text',
-            'options'       => [
-                'label' => 'DOMPDF Library Directory',
-                'column-size' => 'md-8',
-                'label_attributes' => [
-                    'class' => 'col-md-4',
-                ],
-            ],
-            'attributes' => [
-                'readonly' => true,
-            ],
-        ]);
-
-        $this->add([
-            'name'			=> 'enable_autoload',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'DOMPDF Autoloader',
-                'disable_inarray_validator' => true,
-                'value_options' => [
-                    [
-                        'value' => '0',
-                        'label' => 'Disabled',
-                        'disabled' => true,
-                        'selected' => true,
-                        'label_attributes' => [
-                            'class' => 'col-md-12',
-                        ],
-
-                    ],
-                    [
-                        'value' => '1',
-                        'label' => 'Enabled',
-                        'disabled' => true,
-                        'label_attributes' => [
-                            'class' => 'col-md-12',
-                        ],
-
-                    ],
-                ],
-                'column-size' => 'md-8',
-                'label_attributes' => [
-                    'class' => 'col-md-4',
-                ],
-            ],
-        ]);
-
-        $this->add([
-            'name'			=> 'autoload_prepend',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Prepend to Autoloader',
-                'disable_inarray_validator' => true,
-                'value_options' => [
-                    [
-                        'value' => '0',
-                        'label' => 'No',
-                        'disabled' => true,
-                        'selected' => true,
-                        'label_attributes' => [
-                            'class' => 'col-md-12',
-                        ],
-
-                    ],
-                    [
-                        'value' => '1',
-                        'label' => 'Yes',
-                        'disabled' => true,
-                        'label_attributes' => [
-                            'class' => 'col-md-12',
-                        ],
-
-                    ],
-                ],
-                'column-size' => 'md-8',
-                'label_attributes' => [
-                    'class' => 'col-md-4',
-                ],
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'admin_username',
-            'type' => 'text',
-            'options'       => [
-                'label' => 'Admin Username',
-                'column-size' => 'md-8',
-                'label_attributes' => [
-                    'class' => 'col-md-4',
-                ],
-            ],
-            'attributes' => [
-                'readonly' => true,
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'admin_password',
-            'type' => 'text',
-            'options'       => [
-                'label' => 'Admin password',
-                'column-size' => 'md-8',
-                'label_attributes' => [
-                    'class' => 'col-md-4',
-                ],
-            ],
-            'attributes' => [
-                'readonly' => true,
-            ],
-        ]);
-
-        $this->add([
             'name' => 'font_directory',
             'type' => 'text',
-            'options'       => [
+            'options' => [
                 'label' => 'Font Directory',
                 'column-size' => 'md-8',
                 'label_attributes' => [
@@ -190,7 +54,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         $this->add([
             'name' => 'font_cache_directory',
             'type' => 'text',
-            'options'       => [
+            'options' => [
                 'label' => 'Cache Directory',
                 'column-size' => 'md-8',
                 'label_attributes' => [
@@ -202,7 +66,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         $this->add([
             'name' => 'temporary_directory',
             'type' => 'text',
-            'options'       => [
+            'options' => [
                 'label' => 'Temp Directory',
                 'column-size' => 'md-8',
                 'label_attributes' => [
@@ -214,7 +78,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         $this->add([
             'name' => 'chroot',
             'type' => 'text',
-            'options'       => [
+            'options' => [
                 'label' => 'Chroot',
                 'column-size' => 'md-8',
                 'label_attributes' => [
@@ -224,13 +88,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'unicode_enabled',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Enable Unicode',
+            'name' => 'unicode_enabled',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Enable Unicode',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -238,7 +102,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -254,13 +118,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'enable_fontsubsetting',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Enable Font Subsetting',
+            'name' => 'enable_fontsubsetting',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Enable Font Subsetting',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -268,7 +132,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -284,18 +148,18 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'pdf_backend',
-            'type'			=> 'select',
-            'options'		=> [
-                'label'			=> 'PDF Backend',
+            'name' => 'pdf_backend',
+            'type' => 'select',
+            'options' => [
+                'label' => 'PDF Backend',
                 'label_attributes' => [
                     'class' => 'col-md-4',
                 ],
                 'value_options' => [
-                    'auto'      => 'auto',
-                    'CPDF'      => 'CPDF',
-                    'PDFLib'    => 'PDFLib',
-                    'GD'        => 'GD',
+                    'auto' => 'auto',
+                    'CPDF' => 'CPDF',
+                    'PDFLib' => 'PDFLib',
+                    'GD' => 'GD',
                 ],
                 'column-size' => 'md-8',
             ],
@@ -304,7 +168,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         $this->add([
             'name' => 'pdflib_license',
             'type' => 'textarea',
-            'options'       => [
+            'options' => [
                 'label' => 'PDFLib License',
                 'column-size' => 'md-8',
                 'label_attributes' => [
@@ -316,7 +180,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         $this->add([
             'name' => 'default_media_type',
             'type' => 'text',
-            'options'       => [
+            'options' => [
                 'label' => 'Default Media Type',
                 'column-size' => 'md-8',
                 'label_attributes' => [
@@ -328,7 +192,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         $this->add([
             'name' => 'default_paper_size',
             'type' => 'text',
-            'options'       => [
+            'options' => [
                 'label' => 'Default Paper Size',
                 'column-size' => 'md-8',
                 'label_attributes' => [
@@ -340,7 +204,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         $this->add([
             'name' => 'default_font',
             'type' => 'text',
-            'options'       => [
+            'options' => [
                 'label' => 'Default Font',
                 'column-size' => 'md-8',
                 'label_attributes' => [
@@ -351,24 +215,27 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
         $this->add([
             'name' => 'dpi',
-            'type' => 'text',
-            'options'       => [
+            'type' => 'number',
+            'options' => [
                 'label' => 'DPI Setting',
                 'column-size' => 'md-8',
                 'label_attributes' => [
                     'class' => 'col-md-4',
                 ],
             ],
+            'attributes' => [
+                'min'  => '72',
+            ]
         ]);
 
         $this->add([
-            'name'			=> 'enable_php',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Enable PHP',
+            'name' => 'enable_php',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Enable PHP',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -376,7 +243,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -392,13 +259,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'enable_javascript',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Enable JavaScript',
+            'name' => 'enable_javascript',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Enable JavaScript',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -406,7 +273,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -422,13 +289,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'enable_remote',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Enable Remote',
+            'name' => 'enable_remote',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Enable Remote',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -436,7 +303,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -454,7 +321,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         $this->add([
             'name' => 'log_output_file',
             'type' => 'text',
-            'options'       => [
+            'options' => [
                 'label' => 'Debug Log',
                 'column-size' => 'md-8',
                 'label_attributes' => [
@@ -465,24 +332,28 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
         $this->add([
             'name' => 'font_height_ratio',
-            'type' => 'text',
-            'options'       => [
+            'type' => 'number',
+            'options' => [
                 'label' => 'Font Height Ratio',
                 'column-size' => 'md-8',
                 'label_attributes' => [
                     'class' => 'col-md-4',
                 ],
             ],
+            'attributes' => [
+                'min'  => '0',
+                'step' => '0.1'
+            ]
         ]);
 
         $this->add([
-            'name'			=> 'enable_css_float',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Enable CSS Float',
+            'name' => 'enable_css_float',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Enable CSS Float',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -490,7 +361,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -506,13 +377,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'enable_html5parser',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Enable HTML5 Parser',
+            'name' => 'enable_html5parser',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Enable HTML5 Parser',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -520,7 +391,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -536,13 +407,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'debug_png',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Dedug PNG',
+            'name' => 'debug_png',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Dedug PNG',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -550,7 +421,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -566,13 +437,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'debug_keep_temp',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Debug Keep Temp',
+            'name' => 'debug_keep_temp',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Debug Keep Temp',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -580,7 +451,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -596,13 +467,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'debug_css',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Debug CSS',
+            'name' => 'debug_css',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Debug CSS',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -610,7 +481,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -626,13 +497,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'debug_layout',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Debug Layout',
+            'name' => 'debug_layout',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Debug Layout',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -640,7 +511,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -656,13 +527,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'debug_layout_lines',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Debug Layout Lines',
+            'name' => 'debug_layout_lines',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Debug Layout Lines',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -670,7 +541,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -686,13 +557,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'debug_layout_blocks',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Debug Layout Blocks',
+            'name' => 'debug_layout_blocks',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Debug Layout Blocks',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -700,7 +571,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -716,13 +587,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'debug_layout_inline',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Debug Layout Inline',
+            'name' => 'debug_layout_inline',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Debug Layout Inline',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -730,7 +601,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -746,13 +617,13 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
 
         $this->add([
-            'name'			=> 'debug_layout_padding_box',
-            'type'			=> 'radio',
-            'options'		=> [
-                'label'			=> 'Debug Layout Padding Box',
+            'name' => 'debug_layout_padding_box',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Debug Layout Padding Box',
                 'value_options' => [
                     [
-                        'value' => '0',
+                        'value' => 'false',
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -760,7 +631,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => '1',
+                        'value' => 'true',
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -776,15 +647,190 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
         ]);
     }
 
+    /**
+     * @return array
+     */
     public function getInputFilterSpecification()
     {
         return [
-            'enable_autoload' => [
-                'required' => false,
+            'font_directory' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
             ],
-            'autoload_prepend' => [
+            'font_cache_directory' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+            ],
+            'temporary_directory' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+            ],
+            'chroot' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+            ],
+            'unicode_enabled' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'enable_fontsubsetting' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'pdf_backend' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+            ],
+            'pdflib_license' => [
                 'required' => false,
-            ]
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+            ],
+            'default_media_type' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+            ],
+            'default_paper_size' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+            ],
+            'default_font' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+            ],
+            'dpi' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+            ],
+            'enable_php' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'enable_javascript' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'enable_remote' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'log_output_file' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+            ],
+            'font_height_ratio' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+            ],
+            'enable_css_float' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'enable_html5parser' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'debug_png' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'debug_keep_temp' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'debug_css' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'debug_layout' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'debug_layout_lines' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'debug_layout_blocks' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'debug_layout_inline' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
+            'debug_layout_padding_box' => [
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                    ['name' => 'Boolean'],
+                ],
+            ],
         ];
     }
 }
