@@ -11,9 +11,8 @@
 namespace UthandoDomPdfTest\Form;
 
 use UthandoDomPdf\Form\DomPdfOptionsFieldSet;
-use UthandoDomPdfTest\Framework\TestCase;
 
-class DomPdfOptionsFieldSetTest extends TestCase
+class DomPdfOptionsFieldSetTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetInputFilterSpecification()
     {
@@ -43,6 +42,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'unicode_enabled' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -50,6 +51,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'enable_fontsubsetting' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -94,6 +97,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'enable_php' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -101,6 +106,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'enable_javascript' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -108,6 +115,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'enable_remote' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -127,6 +136,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'enable_css_float' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -134,6 +145,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'enable_html5parser' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -141,6 +154,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'debug_png' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -148,6 +163,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'debug_keep_temp' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -155,6 +172,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'debug_css' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -162,6 +181,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'debug_layout' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -169,6 +190,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'debug_layout_lines' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -176,6 +199,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'debug_layout_blocks' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -183,6 +208,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'debug_layout_inline' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -190,6 +217,8 @@ class DomPdfOptionsFieldSetTest extends TestCase
                 ],
             ],
             'debug_layout_padding_box' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],

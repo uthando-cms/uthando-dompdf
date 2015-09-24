@@ -94,7 +94,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Enable Unicode',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -102,7 +102,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -124,7 +124,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Enable Font Subsetting',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -132,7 +132,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -224,7 +224,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'attributes' => [
-                'min'  => '72',
+                'min' => '72',
             ]
         ]);
 
@@ -235,7 +235,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Enable PHP',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -243,7 +243,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -265,7 +265,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Enable JavaScript',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -273,7 +273,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -295,7 +295,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Enable Remote',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -303,7 +303,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -341,7 +341,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'attributes' => [
-                'min'  => '0',
+                'min' => '0',
                 'step' => '0.1'
             ]
         ]);
@@ -353,7 +353,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Enable CSS Float',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -361,7 +361,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -383,7 +383,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Enable HTML5 Parser',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -391,7 +391,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -413,7 +413,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Dedug PNG',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -421,7 +421,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -443,7 +443,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Debug Keep Temp',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -451,7 +451,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -473,7 +473,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Debug CSS',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -481,7 +481,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -503,7 +503,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Debug Layout',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -511,7 +511,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -533,7 +533,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Debug Layout Lines',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -541,7 +541,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -563,7 +563,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Debug Layout Blocks',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -571,7 +571,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -593,7 +593,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Debug Layout Inline',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -601,7 +601,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -623,7 +623,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 'label' => 'Debug Layout Padding Box',
                 'value_options' => [
                     [
-                        'value' => 'false',
+                        'value' => 0,
                         'label' => 'No',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -631,7 +631,7 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
 
                     ],
                     [
-                        'value' => 'true',
+                        'value' => 1,
                         'label' => 'Yes',
                         'label_attributes' => [
                             'class' => 'col-md-12',
@@ -678,6 +678,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'unicode_enabled' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -685,6 +687,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'enable_fontsubsetting' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -729,6 +733,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'enable_php' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -736,6 +742,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'enable_javascript' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -743,6 +751,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'enable_remote' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -762,6 +772,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'enable_css_float' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -769,6 +781,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'enable_html5parser' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -776,6 +790,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'debug_png' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -783,6 +799,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'debug_keep_temp' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -790,6 +808,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'debug_css' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -797,6 +817,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'debug_layout' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -804,6 +826,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'debug_layout_lines' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -811,6 +835,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'debug_layout_blocks' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -818,6 +844,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'debug_layout_inline' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],
@@ -825,6 +853,8 @@ class DomPdfOptionsFieldSet extends Fieldset implements InputFilterProviderInter
                 ],
             ],
             'debug_layout_padding_box' => [
+                'required' => false,
+                'allow_empty' => true,
                 'filters' => [
                     ['name' => 'StripTags'],
                     ['name' => 'StringTrim'],

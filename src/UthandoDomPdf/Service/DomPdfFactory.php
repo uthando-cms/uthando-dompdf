@@ -94,4 +94,3 @@ class DomPdfFactory implements FactoryInterface
         return new DOMPDF();
     }
 }
-

@@ -13,7 +13,7 @@ namespace UthandoDomPdf\Form;
 use UthandoDomPdf\Options\PdfOptions;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods;
+use Zend\Hydrator\ClassMethods;
 
 /**
  * Class PdfOptionsFieldSet
@@ -35,7 +35,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
         $this->add([
             'name' => 'paper_size',
             'type' => 'text',
-            'options'       => [
+            'options' => [
                 'label' => 'Paper Size',
                 'column-size' => 'md-8',
                 'label_attributes' => [
@@ -46,15 +46,15 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
 
         $this->add([
             'name' => 'paper_orientation',
-            'type'			=> 'select',
-            'options'		=> [
-                'label'			=> 'Paper Orientation',
+            'type' => 'select',
+            'options' => [
+                'label' => 'Paper Orientation',
                 'label_attributes' => [
                     'class' => 'col-md-4',
                 ],
                 'value_options' => [
-                    'portrait'   => 'Portrait',
-                    'landscape'  => 'Landscape',
+                    'portrait' => 'Portrait',
+                    'landscape' => 'Landscape',
                 ],
                 'column-size' => 'md-8',
             ],
@@ -63,7 +63,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
         $this->add([
             'name' => 'base_path',
             'type' => 'text',
-            'options'       => [
+            'options' => [
                 'label' => 'Base Path',
                 'column-size' => 'md-8',
                 'label_attributes' => [
@@ -75,12 +75,46 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
         $this->add([
             'name' => 'file_name',
             'type' => 'text',
-            'options'       => [
+            'options' => [
                 'label' => 'File Name',
                 'column-size' => 'md-8',
                 'label_attributes' => [
                     'class' => 'col-md-4',
                 ],
+            ],
+        ]);
+
+        $this->add([
+            'type' => 'Zend\Form\Element\Collection',
+            'name' => 'header_lines',
+            'options' => [
+                'label' => 'Add header lines to PDF',
+                'count' => 0,
+                'should_create_template' => true,
+                'allow_add' => true,
+                'target_element' => [
+                    'type' => 'PdfTextLineFieldSet',
+                ],
+            ],
+            'attributes' => [
+                'class' => 'col-md-12',
+            ],
+        ]);
+
+        $this->add([
+            'type' => 'Zend\Form\Element\Collection',
+            'name' => 'footer_lines',
+            'options' => [
+                'label' => 'Add footer lines to PDF',
+                'count' => 0,
+                'should_create_template' => true,
+                'allow_add' => true,
+                'target_element' => [
+                    'type' => 'PdfTextLineFieldSet',
+                ],
+            ],
+            'attributes' => [
+                'class' => 'col-md-12',
             ],
         ]);
     }

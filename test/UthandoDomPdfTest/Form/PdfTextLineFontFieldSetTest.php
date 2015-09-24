@@ -10,45 +10,34 @@
 
 namespace UthandoDomPdfTest\Form;
 
-use UthandoDomPdf\Form\PdfOptionsFieldSet;
+use UthandoDomPdf\Form\PdfTextLineFontFieldSet;
 
-class PdfOptionsFieldSetTest extends \PHPUnit_Framework_TestCase
+class PdfTextLineFontFieldSetTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetInputFilterSpecification()
     {
         $array = [
-            'paper_size' => [
-                'required' => true,
+            'family' => [
                 'filters' => [
-                    ['name' => 'StringTrim'],
                     ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
                 ],
             ],
-            'paper_orientation' => [
-                'required' => true,
+            'weight' => [
                 'filters' => [
-                    ['name' => 'StringTrim'],
                     ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
                 ],
             ],
-            'base_path' => [
-                'required' => false,
+            'size' => [
                 'filters' => [
-                    ['name' => 'StringTrim'],
                     ['name' => 'StripTags'],
-                ],
-            ],
-            'file_name' => [
-                'required' => false,
-                'filters' => [
                     ['name' => 'StringTrim'],
-                    ['name' => 'StripTags'],
-                    ['name' => 'ToNull'],
                 ],
             ],
         ];
 
-        $form = new PdfOptionsFieldSet();
+        $form = new PdfTextLineFontFieldSet();
         $spec = $form->getInputFilterSpecification();
         $this->assertSame($array, $spec);
     }

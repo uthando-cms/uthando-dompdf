@@ -8,9 +8,11 @@ return [
     ],
     'form_elements' => [
         'invokables' => [
-            'DomPdfOptionsFieldSet' => 'UthandoDomPdf\Form\DomPdfOptionsFieldSet',
-            'PdfOptionsFieldSet'    => 'UthandoDomPdf\Form\PdfOptionsFieldSet',
-            'DomPdfSettings'        => 'UthandoDomPdf\Form\DomPdfSettings',
+            'DomPdfOptionsFieldSet'     => 'UthandoDomPdf\Form\DomPdfOptionsFieldSet',
+            'DomPdfSettings'            => 'UthandoDomPdf\Form\DomPdfSettings',
+            'PdfOptionsFieldSet'        => 'UthandoDomPdf\Form\PdfOptionsFieldSet',
+            'PdfTextLineFieldSet'       => 'UthandoDomPdf\Form\PdfTextLineFieldSet',
+            'PdfTextLineFontFieldSet'   => 'UthandoDomPdf\Form\PdfTextLineFontFieldSet',
         ],
     ],
     'service_manager' => [
