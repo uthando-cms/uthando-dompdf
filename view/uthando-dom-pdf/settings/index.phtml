@@ -1,5 +1,112 @@
 <?php $this->HeadTitle('Dom Pdf Settings'); ?>
 
-<?=$this->form($this->form);?>
+<?php
+$form = $this->form;
+$form->prepare();
+
+$pdfOptions = $form->get('pdf_options');
+$domPdfOptions = $form->get('dompdf_options');
+?>
+
+<?=$this->form(null, \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)->openTag($form);?>
+
+    <fieldset class="<?=$pdfOptions->getAttribute('class');?>">
+        <legend><?=$pdfOptions->getLabel();?></legend>
+        <?=$this->formRow($pdfOptions->get('paper_size'));?>
+        <?=$this->formRow($pdfOptions->get('paper_orientation'));?>
+        <?=$this->formRow($pdfOptions->get('base_path'));?>
+        <?=$this->formRow($pdfOptions->get('file_name'));?>
+
+        <div class="col-md-12">
+            <div class="panel-group" id="accordion">
+                <div id="pdf-header-lines" class="panel panel-info">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                PDF Header Lines (<?=$pdfOptions->get('header_lines')->count();?>)
+                            </a>
+                            <button id="add-header-line-button" class="btn btn-default btn-xs">
+                                Add Line
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-table panel-collapse collapse">
+                        <?php $this->pdfTextLineFormCollection()->setLineType('header');?>
+                        <?=$this->pdfTextLineFormCollection($pdfOptions->get('header_lines'), false);?>
+                    </div>
+                </div>
+
+                <div id="pdf-footer-lines" class="panel panel-info">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                PDF Footer Lines (<?=$pdfOptions->get('footer_lines')->count();?>)
+                            </a>
+                            <button id="add-footer-line-button" class="btn btn-default btn-xs">
+                                Add Line
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-table panel-collapse collapse">
+                        <?php $this->pdfTextLineFormCollection()->setLineType('footer');?>
+                        <?=$this->pdfTextLineFormCollection($pdfOptions->get('footer_lines'), false);?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <?=$this->formCollection($domPdfOptions);?>
+
+    <?=$this->formRow($form->get('button-submit'));?>
+
+<?=$this->form()->closeTag();?>
 
 <div class="clearfix"></div>
+
+
+<script type="text/javascript">
+    $('#add-header-line-button').on('click', function(e){
+        e.preventDefault();
+        var headerTemplate = $('#header-lines-template').data('template');
+        var currentCount = $('#header-lines-table tr').length;
+        headerTemplate = headerTemplate.replace(/__index__/g, currentCount);
+        headerTemplate = headerTemplate.replace(/__text__/g, '');
+        console.log(currentCount);
+        if (currentCount == 0) {
+            $('#header-lines-table').html(headerTemplate);
+
+        } else {
+            $('#header-lines-table tr:last').after(headerTemplate);
+        }
+
+    });
+
+    $( "#header-lines-table" ).on( "click", ".delete-row", function(e) {
+        e.preventDefault();
+        var row = $(this).parent().parent();
+        row.remove();
+    });
+
+    $('#add-footer-line-button').on('click', function(e){
+        e.preventDefault();
+        var footerTemplate = $('#footer-lines-template').data('template');
+        var currentCount = $('#footer-lines-table tr').length;
+        footerTemplate = footerTemplate.replace(/__index__/g, currentCount);
+        footerTemplate = footerTemplate.replace(/__text__/g, '');
+        if (currentCount == 0) {
+            $('#footer-lines-table').html(footerTemplate);
+        } else {
+            $('#footer-lines-table tr:last').after(footerTemplate);
+        }
+
+    });
+
+    $( "#footer-lines-table" ).on( "click", ".delete-row", function(e) {
+        e.preventDefault();
+        var row = $(this).parent().parent();
+        row.remove();
+    });
+</script>

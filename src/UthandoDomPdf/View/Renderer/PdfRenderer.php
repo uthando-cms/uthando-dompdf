@@ -174,6 +174,12 @@ class PdfRenderer implements Renderer
         return $pdf;
     }
 
+    /**
+     * @param $pageWidth
+     * @param $textWidth
+     * @param $position
+     * @return float|int
+     */
     private function getPosition($pageWidth, $textWidth, $position)
     {
         switch ($position) {

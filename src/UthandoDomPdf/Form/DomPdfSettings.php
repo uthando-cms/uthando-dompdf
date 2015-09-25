@@ -41,6 +41,7 @@ class DomPdfSettings extends Form
             'name' => 'dompdf_options',
             'options' => [
                 'label' => 'DOMPDF Options',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
             ],
             'attributes' => [
                 'class' => 'col-md-6',

@@ -31,6 +31,11 @@ return [
             'ViewPdfStrategy'   => 'UthandoDomPdf\Mvc\Service\ViewPdfStrategyFactory',
         ]
     ],
+     'view_helpers' => [
+        'invokables' => [
+            'PdfTextLineFormCollection' => 'UthandoDomPdf\Form\View\Helper\PdfTextLineFormCollection',
+        ],
+    ],
     'view_manager' => [
         'strategies' => [
             'ViewPdfStrategy'

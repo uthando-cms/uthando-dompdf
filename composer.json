@@ -29,7 +29,8 @@
     "zendframework/zend-stdlib": "2.*",
     "zendframework/zend-view": "2.*",
     "uthando-cms/uthando-common": "1.*",
-    "dompdf/dompdf": "0.6.*"
+    "dompdf/dompdf": "0.6.*",
+    "neilime/zf2-twb-bundle": "2.*@stable"
   },
   "require-dev": {
     "codeclimate/php-test-reporter": "dev-master"

@@ -10,6 +10,7 @@
 
 namespace UthandoDomPdf\Form;
 
+use TwbBundle\Form\View\Helper\TwbBundleForm;
 use UthandoDomPdf\Model\PdfTextLine;
 use Zend\Form\Fieldset;
 use Zend\Hydrator\ClassMethods;
@@ -44,6 +45,7 @@ class PdfTextLineFieldSet extends Fieldset implements InputFilterProviderInterfa
             'type' => 'text',
             'options' => [
                 'label' => 'Line Text',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
                 'column-size' => 'md-8',
                 'label_attributes' => [
                     'class' => 'col-md-4',
@@ -56,6 +58,7 @@ class PdfTextLineFieldSet extends Fieldset implements InputFilterProviderInterfa
             'type' => 'select',
             'options' => [
                 'label' => 'Text Position',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
                 'label_attributes' => [
                     'class' => 'col-md-4',
                 ],
@@ -73,6 +76,7 @@ class PdfTextLineFieldSet extends Fieldset implements InputFilterProviderInterfa
             'name' => 'font',
             'options' => [
                 'label' => 'Font',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
             ],
             'attributes' => [
                 'class' => 'col-md-12',

@@ -10,6 +10,7 @@
 
 namespace UthandoDomPdf\Form;
 
+use TwbBundle\Form\View\Helper\TwbBundleForm;
 use UthandoDomPdf\Options\PdfOptions;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
@@ -38,6 +39,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
             'options' => [
                 'label' => 'Paper Size',
                 'column-size' => 'md-8',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
                 'label_attributes' => [
                     'class' => 'col-md-4',
                 ],
@@ -49,6 +51,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
             'type' => 'select',
             'options' => [
                 'label' => 'Paper Orientation',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
                 'label_attributes' => [
                     'class' => 'col-md-4',
                 ],
@@ -65,6 +68,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
             'type' => 'text',
             'options' => [
                 'label' => 'Base Path',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
                 'column-size' => 'md-8',
                 'label_attributes' => [
                     'class' => 'col-md-4',
@@ -77,6 +81,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
             'type' => 'text',
             'options' => [
                 'label' => 'File Name',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
                 'column-size' => 'md-8',
                 'label_attributes' => [
                     'class' => 'col-md-4',
@@ -89,6 +94,9 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
             'name' => 'header_lines',
             'options' => [
                 'label' => 'Add header lines to PDF',
+                'label_options' => [
+                    'disable_html_escape' => true,
+                ],
                 'count' => 0,
                 'should_create_template' => true,
                 'allow_add' => true,
@@ -106,6 +114,9 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
             'name' => 'footer_lines',
             'options' => [
                 'label' => 'Add footer lines to PDF',
+                'label_options' => [
+                    'disable_html_escape' => true,
+                ],
                 'count' => 0,
                 'should_create_template' => true,
                 'allow_add' => true,
