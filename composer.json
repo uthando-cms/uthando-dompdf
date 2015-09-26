@@ -35,6 +35,11 @@
   "require-dev": {
     "codeclimate/php-test-reporter": "dev-master"
   },
+  "suggest": {
+    "uthando-cms/uthando-user": "User management",
+    "uthando-cms/uthando-navigation": "Navigation management.",
+    "uthando-cms/uthando-admin": "Admin operations"
+  },
   "autoload": {
     "psr-0": {
       "UthandoDomPdf": "src/"

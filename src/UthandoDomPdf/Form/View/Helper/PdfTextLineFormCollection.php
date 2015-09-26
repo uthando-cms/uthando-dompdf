@@ -101,7 +101,7 @@ class PdfTextLineFormCollection extends TwbBundleFormCollection
                         $this->getLineType(),
                         $oFieldSetHelper($oElementOrFieldset, false),
                         ucfirst($this->getLineType())
-                );
+                    );
                 } elseif ($oElementOrFieldset instanceof ElementInterface) {
                     $html .= $oElementHelper($oElementOrFieldset);
                 }

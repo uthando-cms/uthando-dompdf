@@ -74,7 +74,6 @@ $domPdfOptions = $form->get('dompdf_options');
         var currentCount = $('#header-lines-table tr').length;
         headerTemplate = headerTemplate.replace(/__index__/g, currentCount);
         headerTemplate = headerTemplate.replace(/__text__/g, '');
-        console.log(currentCount);
         if (currentCount == 0) {
             $('#header-lines-table').html(headerTemplate);
 

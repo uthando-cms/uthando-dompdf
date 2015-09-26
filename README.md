@@ -98,6 +98,37 @@ class ReportController extends AbstractActionController
 }
 ```
 
+## Admin Settings and Configuration
+There is an admin setting page. It's not enabled by default. If you are using [UthandoAdmin](https://github.com/uthando-cms/uthando-admin) you can enable the routes, navigation and acl rules 
+by adding
+    
+    ```php
+    'load_uthando_configs' => true,
+    ```
+    
+to you global config in `config/autoload/global.php` and add
+    
+    ```json
+    {
+        "require": {
+            "uthando-cms/uthando-admin": "1.*"
+        }
+    }
+    ```
+
+to your composer.json file then do and `php composer.phar update` to update your dependencies.
+ 
+If you are not using the [UthandoAdmin](https://github.com/uthando-cms/uthando-admin) module you can still use the settings page but must configure the routes, navigation and acl rules manually,
+ please not that if you do not have any authentication checks then the settings page will be available to the public. You can use the files in config
+ folder as a basis to set up the admin page.
+ 
+The Admin settings page also requires that you have [Twitter Bootstrap 3](http://getbootstrap.com) and [JQuery](https://jquery.com) enabled in your layout template.
+ 
+You can also manually setup the options by copying `config/module.config.php.dist` to your `config\autoload` folder and remaing it to `uthando-dompdf.local.php`.
+
+## Contributing
+If you like to help improve this module please clone the repository and send me a pull request, please also include unit tests for the changes/additions
+ you make.
+
 ## To-do
-  - Add Admin forms for options.
   - Add command line support.
