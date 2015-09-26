@@ -102,19 +102,19 @@ class ReportController extends AbstractActionController
 There is an admin setting page. It's not enabled by default. If you are using [UthandoAdmin](https://github.com/uthando-cms/uthando-admin) you can enable the routes, navigation and acl rules 
 by adding
     
-    ```php
-    'load_uthando_configs' => true,
-    ```
+```php
+'load_uthando_configs' => true,
+```
     
 to you global config in `config/autoload/global.php` and add
     
-    ```json
-    {
-        "require": {
-            "uthando-cms/uthando-admin": "1.*"
-        }
+```json
+{
+    "require": {
+        "uthando-cms/uthando-admin": "1.*"
     }
-    ```
+}
+```
 
 to your composer.json file then do and `php composer.phar update` to update your dependencies.
  
