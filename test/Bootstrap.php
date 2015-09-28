@@ -33,6 +33,7 @@ class Bootstrap
                 'Application',
                 'UthandoDomPdf',
                 'UthandoCommon',
+                'TwbBundle',
             ),
         );
 

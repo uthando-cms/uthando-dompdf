@@ -102,8 +102,6 @@ class PdfTextLineFormCollection extends TwbBundleFormCollection
                         $oFieldSetHelper($oElementOrFieldset, false),
                         ucfirst($this->getLineType())
                     );
-                } elseif ($oElementOrFieldset instanceof ElementInterface) {
-                    $html .= $oElementHelper($oElementOrFieldset);
                 }
 
                 $c++;
@@ -131,11 +129,6 @@ class PdfTextLineFormCollection extends TwbBundleFormCollection
      */
     public function renderTemplate(Collection $collection)
     {
-        if (false != ($sElementLayout = $collection->getOption('twb-layout'))) {
-            $elementOrFieldset = $collection->getTemplateElement();
-            $elementOrFieldset->setOption('twb-layout', $sElementLayout);
-        }
-
         $elementHelper = $this->getElementHelper();
         $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
         $fieldsetHelper = $this->getFieldsetHelper();
@@ -151,9 +144,6 @@ class PdfTextLineFormCollection extends TwbBundleFormCollection
                 $fieldsetHelper($elementOrFieldset, $this->shouldWrap()),
                 ucfirst($this->getLineType())
             );
-        } elseif ($elementOrFieldset instanceof ElementInterface) {
-            $templateMarkup .= $elementHelper($elementOrFieldset);
-
         }
 
         return sprintf(
