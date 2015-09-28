@@ -15,10 +15,9 @@ before_script:
   - cd module/UthandoDomPdf/test
 
 script:
-  - phpunit --coverage-clover build/logs/clover.xml
+  - phpunit
 
 after_script:
   - cd ../
-  - cp -R ../../build ./build
   - cp -R ../../vendor ./vendor
   - php vendor/bin/test-reporter --coverage-report=build/logs/clover.xml

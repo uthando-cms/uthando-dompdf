@@ -18,43 +18,39 @@ $domPdfOptions = $form->get('dompdf_options');
         <?=$this->formRow($pdfOptions->get('file_name'));?>
 
         <div class="col-md-12">
-            <div class="panel-group" id="accordion">
-                <div id="pdf-header-lines" class="panel panel-info">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                PDF Header Lines (<?=$pdfOptions->get('header_lines')->count();?>)
-                            </a>
-                            <button id="add-header-line-button" class="btn btn-default btn-xs">
-                                Add Line
-                            </button>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-table panel-collapse collapse">
-                        <?php $this->pdfTextLineFormCollection()->setLineType('header');?>
-                        <?=$this->pdfTextLineFormCollection($pdfOptions->get('header_lines'), false);?>
-                    </div>
-                </div>
 
-                <div id="pdf-footer-lines" class="panel panel-info">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                PDF Footer Lines (<?=$pdfOptions->get('footer_lines')->count();?>)
-                            </a>
-                            <button id="add-footer-line-button" class="btn btn-default btn-xs">
-                                Add Line
-                            </button>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-table panel-collapse collapse">
-                        <?php $this->pdfTextLineFormCollection()->setLineType('footer');?>
-                        <?=$this->pdfTextLineFormCollection($pdfOptions->get('footer_lines'), false);?>
-                    </div>
+            <div id="pdf-header-lines" class="panel panel-info">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                            PDF Header Lines (<?=$pdfOptions->get('header_lines')->count();?>)
+                        <button id="add-header-line-button" class="btn btn-default btn-xs">
+                            Add Line
+                        </button>
+                    </h4>
+                </div>
+                <div class="panel-table">
+                    <?php $this->pdfTextLineFormCollection()->setLineType('header');?>
+                    <?=$this->pdfTextLineFormCollection($pdfOptions->get('header_lines'), false);?>
                 </div>
             </div>
+
+            <div id="pdf-footer-lines" class="panel panel-info">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                            PDF Footer Lines (<?=$pdfOptions->get('footer_lines')->count();?>)
+                        <button id="add-footer-line-button" class="btn btn-default btn-xs">
+                            Add Line
+                        </button>
+                    </h4>
+                </div>
+                <div class="panel-table">
+                    <?php $this->pdfTextLineFormCollection()->setLineType('footer');?>
+                    <?=$this->pdfTextLineFormCollection($pdfOptions->get('footer_lines'), false);?>
+                </div>
+            </div>
+
         </div>
     </fieldset>
 

@@ -35,7 +35,7 @@ class Module
         $configListener = $e->getConfigListener();
         $config         = $configListener->getMergedConfig(false);
 
-        // Modify the configuration; here, we'll remove a specific key:
+        // Modify the configuration;
         if (isset($config['load_uthando_configs']) && true === $config['load_uthando_configs']) {
             $routes         = include __DIR__ . '/config/uthando-routes.config.php';
             $acl            = include __DIR__ . '/config/uthando-user.config.php';

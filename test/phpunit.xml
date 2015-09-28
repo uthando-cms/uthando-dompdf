@@ -16,9 +16,10 @@
     </filter>
 
     <logging>
-        <log type="coverage-html" target="../../../build/logs/UthandoDomPdf" charset="UTF-8"
+        <log type="coverage-html" target="../build/logs/UthandoDomPdf" charset="UTF-8"
              yui="true" highlight="true"
              lowUpperBound="50" highLowerBound="80"/>
         <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+        <log type="coverage-clover" target="../build/logs/coverage.xml"/>
     </logging>
 </phpunit>
