@@ -2,7 +2,7 @@
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
- * @package   Settings
+ * @package   UthandoDomPdf
  * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
  * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
  * @license   see LICENSE.txt
@@ -47,6 +47,7 @@ class Module
         // Pass the changed configuration back to the listener:
         $configListener->setMergedConfig($config);
     }
+
     /**
      * @return array
      */
