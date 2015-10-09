@@ -90,7 +90,6 @@ class PdfTextLineFormCollection extends TwbBundleFormCollection
             $c = 0;
 
             foreach ($oElement as $key => $oElementOrFieldset) {
-                $oElementHelper = $this->getElementHelper();
                 $oFieldSetHelper = $this->getFieldsetHelper();
 
                 if ($oElementOrFieldset instanceof PdfTextLineFieldSet) {
@@ -129,7 +128,6 @@ class PdfTextLineFormCollection extends TwbBundleFormCollection
      */
     public function renderTemplate(Collection $collection)
     {
-        $elementHelper = $this->getElementHelper();
         $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
         $fieldsetHelper = $this->getFieldsetHelper();
 

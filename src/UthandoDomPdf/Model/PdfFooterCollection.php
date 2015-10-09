@@ -50,7 +50,6 @@ class PdfFooterCollection extends AbstractCollection
     /**
      * @param $footerLine
      * @return $this
-     * @throws \UthandoCommon\Model\CollectionException
      */
     public function addFooterLine($footerLine)
     {
@@ -67,8 +66,7 @@ class PdfFooterCollection extends AbstractCollection
     }
 
     /**
-     * Make sure we have the cart items in the right order
-     * reorder the cart by [category - sku]
+     * Make sure we have the items in the right order, reverse order
      */
     public function rewind()
     {

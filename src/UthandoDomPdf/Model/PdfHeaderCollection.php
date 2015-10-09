@@ -45,7 +45,6 @@ class PdfHeaderCollection extends AbstractCollection
     /**
      * @param $headerLine
      * @return $this
-     * @throws \UthandoCommon\Model\CollectionException
      */
     public function addHeaderLine($headerLine)
     {
