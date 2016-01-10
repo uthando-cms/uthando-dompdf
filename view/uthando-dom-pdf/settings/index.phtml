@@ -14,6 +14,10 @@ $domPdfOptions = $form->get('dompdf_options');
         <legend><?=$pdfOptions->getLabel();?></legend>
         <?=$this->formRow($pdfOptions->get('paper_size'));?>
         <?=$this->formRow($pdfOptions->get('paper_orientation'));?>
+        <?=$this->formRow($pdfOptions->get('top_margin'));?>
+        <?=$this->formRow($pdfOptions->get('right_margin'));?>
+        <?=$this->formRow($pdfOptions->get('bottom_margin'));?>
+        <?=$this->formRow($pdfOptions->get('left_margin'));?>
         <?=$this->formRow($pdfOptions->get('base_path'));?>
         <?=$this->formRow($pdfOptions->get('file_name'));?>
 

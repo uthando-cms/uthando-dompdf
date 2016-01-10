@@ -10,7 +10,6 @@
 
 namespace UthandoDomPdf\View\Renderer;
 
-use UthandoCommon\Model\AbstractCollection;
 use UthandoDomPdf\Options\PdfOptions;
 use UthandoDomPdf\View\Model\PdfModel;
 use Zend\View\Model\ModelInterface;
@@ -116,7 +115,7 @@ class PdfRenderer implements Renderer
             return $pdf;
         }
 
-        return $this->processPageLines($pdf, $pdfOptions->getHeaderLines(), 'header');
+        return $this->processPageLines($pdf, $pdfOptions, 'header');
     }
 
     /**
@@ -130,20 +129,21 @@ class PdfRenderer implements Renderer
             return $pdf;
         }
 
-        return $this->processPageLines($pdf, $pdfOptions->getFooterLines(), 'footer');
+        return $this->processPageLines($pdf, $pdfOptions, 'footer');
     }
 
     /**
      * @param DOMPDF $pdf
-     * @param AbstractCollection $pageLines
+     * @param PdfOptions $pdfOptions
      * @param $position
      * @return DOMPDF
      */
-    private function processPageLines(DOMPDF $pdf, AbstractCollection $pageLines, $position)
+    private function processPageLines(DOMPDF $pdf, PdfOptions $pdfOptions, $position)
     {
+        $pageLines      = ('header' === $position) ? $pdfOptions->getHeaderLines() : $pdfOptions->getFooterLines();
         $canvas         = $pdf->get_canvas();
         $pageWidth      = $canvas->get_width();
-        $pageHeight     = ('header' === $position) ? 0 : $canvas->get_height();
+        $pageHeight     = ('header' === $position) ? $pdfOptions->getTopMargin() : $canvas->get_height() - $pdfOptions->getBottomMargin();
         $previousHeight = 5; // margin
         $pageCount      = $canvas->get_page_count();
         $pageNumberMap  = ['/{PAGE_COUNT}/', '/{PAGE_NUM}/',];
@@ -164,7 +164,7 @@ class PdfRenderer implements Renderer
                 $startY = ($pageHeight - $previousHeight) - $fontHeight;
             }
 
-            $startX = $this->getPosition($pageWidth, $textWidth, $line->getPosition());
+            $startX = $this->getPosition($pageWidth, $textWidth, $line->getPosition(), $pdfOptions);
 
             $canvas->page_text($startX, $startY, $text, $font, $size, [0,0,0]);
 
@@ -178,16 +178,17 @@ class PdfRenderer implements Renderer
      * @param $pageWidth
      * @param $textWidth
      * @param $position
+     * @param PdfOptions $pdfOptions
      * @return float|int
      */
-    private function getPosition($pageWidth, $textWidth, $position)
+    private function getPosition($pageWidth, $textWidth, $position, PdfOptions $pdfOptions)
     {
         switch ($position) {
             case 'left':
-                $startX = 5;
+                $startX = $pdfOptions->getLeftMargin();
                 break;
             case 'right':
-                $startX = ($pageWidth - $textWidth) - 5;
+                $startX = ($pageWidth - $textWidth) - $pdfOptions->getRightMargin();
                 break;
             default:
                 $startX = ($pageWidth - $textWidth) / 2;

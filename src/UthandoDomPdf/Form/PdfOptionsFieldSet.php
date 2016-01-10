@@ -64,6 +64,58 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
         ]);
 
         $this->add([
+            'name' => 'top_margin',
+            'type' => 'number',
+            'options' => [
+                'label' => 'Top Margin',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
+                'label_attributes' => [
+                    'class' => 'col-md-4',
+                ],
+                'column-size' => 'md-8',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'right_margin',
+            'type' => 'number',
+            'options' => [
+                'label' => 'Right Margin',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
+                'label_attributes' => [
+                    'class' => 'col-md-4',
+                ],
+                'column-size' => 'md-8',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'bottom_margin',
+            'type' => 'number',
+            'options' => [
+                'label' => 'Bottom Margin',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
+                'label_attributes' => [
+                    'class' => 'col-md-4',
+                ],
+                'column-size' => 'md-8',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'left_margin',
+            'type' => 'number',
+            'options' => [
+                'label' => 'Left Margin',
+                'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
+                'label_attributes' => [
+                    'class' => 'col-md-4',
+                ],
+                'column-size' => 'md-8',
+            ],
+        ]);
+
+        $this->add([
             'name' => 'base_path',
             'type' => 'text',
             'options' => [

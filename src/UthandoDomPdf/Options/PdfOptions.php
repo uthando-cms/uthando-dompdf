@@ -27,7 +27,7 @@ class PdfOptions extends AbstractOptions
     /**
      * @var string
      */
-    protected $paperSize = '8x11';
+    protected $paperSize = 'a4';
 
     /**
      * @var string
@@ -53,6 +53,26 @@ class PdfOptions extends AbstractOptions
      * @var PdfFooterCollection
      */
     protected $footerLines;
+
+    /**
+     * @var int
+     */
+    protected $topMargin = 5;
+
+    /**
+     * @var int
+     */
+    protected $rightMargin = 5;
+
+    /**
+     * @var int
+     */
+    protected $bottomMargin = 5;
+
+    /**
+     * @var int
+     */
+    protected $leftMargin = 5;
 
     /**
      * @return string
@@ -181,6 +201,78 @@ class PdfOptions extends AbstractOptions
 
         $this->footerLines = $footerLines;
 
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTopMargin()
+    {
+        return $this->topMargin;
+    }
+
+    /**
+     * @param int $topMargin
+     * @return $this
+     */
+    public function setTopMargin($topMargin)
+    {
+        $this->topMargin = $topMargin;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRightMargin()
+    {
+        return $this->rightMargin;
+    }
+
+    /**
+     * @param int $rightMargin
+     * @return $this
+     */
+    public function setRightMargin($rightMargin)
+    {
+        $this->rightMargin = $rightMargin;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBottomMargin()
+    {
+        return $this->bottomMargin;
+    }
+
+    /**
+     * @param int $bottomMargin
+     * @return $this
+     */
+    public function setBottomMargin($bottomMargin)
+    {
+        $this->bottomMargin = $bottomMargin;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLeftMargin()
+    {
+        return $this->leftMargin;
+    }
+
+    /**
+     * @param int $leftMargin
+     * @return $this
+     */
+    public function setLeftMargin($leftMargin)
+    {
+        $this->leftMargin = $leftMargin;
         return $this;
     }
 }
