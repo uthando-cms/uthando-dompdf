@@ -93,4 +93,28 @@ class PdfOptionsTest extends \PHPUnit_Framework_TestCase
         $this->model->setFooterLines('invailid data');
         $this->fail('Expected exception "Zend\Stdlib\Exception\InvalidArgumentException" not thrown');
     }
+
+    public function testSetGetTopMargin()
+    {
+        $this->model->setTopMargin(10);
+        $this->assertSame(10, $this->model->getTopMargin());
+    }
+
+    public function testSetGetRightMargin()
+    {
+        $this->model->setRightMargin(10);
+        $this->assertSame(10, $this->model->getRightMargin());
+    }
+
+    public function testSetGetBottomMargin()
+    {
+        $this->model->setBottomMargin(10);
+        $this->assertSame(10, $this->model->getBottomMargin());
+    }
+
+    public function testSetGetLeftMargin()
+    {
+        $this->model->setLeftMargin(10);
+        $this->assertSame(10, $this->model->getLeftMargin());
+    }
 }
