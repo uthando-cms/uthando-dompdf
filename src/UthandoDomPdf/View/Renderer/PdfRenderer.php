@@ -89,7 +89,7 @@ class PdfRenderer implements Renderer
         $paperOrientation   = $pdfOptions->getPaperOrientation();
         $basePath           = $pdfOptions->getBasePath();
 
-        $paperSize          = (count($paperSize) > 0) ? $paperSize : $paperSize[0];
+        $paperSize          = (count($paperSize) === 1) ? $paperSize[0] : $paperSize;
         
         $pdf = $this->getEngine();
         $pdf->set_paper($paperSize, $paperOrientation);
