@@ -124,7 +124,7 @@ If you are not using the [UthandoAdmin](https://github.com/uthando-cms/uthando-a
  
 The Admin settings page also requires that you have [Twitter Bootstrap 3](http://getbootstrap.com) and [JQuery](https://jquery.com) enabled in your layout template.
  
-You can also manually setup the options by copying `config/module.config.php.dist` to your `config\autoload` folder and remaing it to `uthando-dompdf.local.php`.
+You can also manually setup the options by copying `config/module.config.php.dist` to your `config\autoload` folder and renaming it to `uthando-dompdf.local.php`.
 
 ## Contributing
 If you like to help improve this module please clone the repository and send me a pull request, please also include unit tests for the changes/additions
