@@ -1,7 +1,10 @@
 language: php
 
 php:
+  - 5.5
+  - 5.6
   - 7.0
+  - hhvm
 
 before_script:
   - cd ..
@@ -15,9 +18,14 @@ before_script:
   - cd module/UthandoDomPdf/test
 
 script:
-  - phpdbg -qrr ../../../vendor/bin/phpunit -v
+  - if [[ $TRAVIS_PHP_VERSION =~ ^hhvm ]]; then echo 'xdebug.enable = On' >> /etc/hhvm/php.ini; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" ]]; then phpdbg -qrr ../../../vendor/bin/phpunit -v; else phpunit; fi
 
 after_script:
   - cd ../
   - cp -R ../../vendor ./vendor
-  - php vendor/bin/test-reporter --coverage-report=build/logs/clover.xml
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" ]]; then php vendor/bin/test-reporter --coverage-report=build/logs/clover.xml; fi
+
+matrix:
+  allow_failures:
+    - php: hhvm
