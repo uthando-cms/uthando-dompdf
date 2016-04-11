@@ -72,7 +72,7 @@ class PdfTextLineFieldSet extends Fieldset implements InputFilterProviderInterfa
         ]);
 
         $this->add([
-            'type' => 'PdfTextLineFontFieldSet',
+            'type' => PdfTextLineFontFieldSet::class,
             'name' => 'font',
             'options' => [
                 'label' => 'Font',

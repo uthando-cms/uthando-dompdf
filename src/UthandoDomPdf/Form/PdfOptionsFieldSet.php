@@ -153,7 +153,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
                 'should_create_template' => true,
                 'allow_add' => true,
                 'target_element' => [
-                    'type' => 'PdfTextLineFieldSet',
+                    'type' => PdfTextLineFieldSet::class,
                 ],
             ],
             'attributes' => [
@@ -173,7 +173,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
                 'should_create_template' => true,
                 'allow_add' => true,
                 'target_element' => [
-                    'type' => 'PdfTextLineFieldSet',
+                    'type' => PdfTextLineFieldSet::class,
                 ],
             ],
             'attributes' => [

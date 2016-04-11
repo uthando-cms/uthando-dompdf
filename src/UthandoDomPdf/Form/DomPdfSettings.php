@@ -26,7 +26,7 @@ class DomPdfSettings extends Form
     public function init()
     {
         $this->add([
-            'type' => 'PdfOptionsFieldSet',
+            'type' => PdfOptionsFieldSet::class,
             'name' => 'pdf_options',
             'options' => [
                 'label' => 'PDF Options',
@@ -37,7 +37,7 @@ class DomPdfSettings extends Form
         ]);
 
         $this->add([
-            'type' => 'DomPdfOptionsFieldSet',
+            'type' => DomPdfOptionsFieldSet::class,
             'name' => 'dompdf_options',
             'options' => [
                 'label' => 'DOMPDF Options',

@@ -11,6 +11,7 @@
 namespace UthandoDomPdf\Mvc\Controller;
 
 use UthandoCommon\Controller\SettingsTrait;
+use UthandoDomPdf\Form\DomPdfSettings;
 use Zend\Mvc\Controller\AbstractActionController;
 
 /**
@@ -24,7 +25,7 @@ class Settings extends AbstractActionController
 
     public function __construct()
     {
-        $this->setFormName('DomPdfSettings')
+        $this->setFormName(DomPdfSettings::class)
             ->setConfigKey('uthando_dompdf');
     }
 }

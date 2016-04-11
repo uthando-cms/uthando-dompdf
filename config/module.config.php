@@ -1,5 +1,12 @@
 <?php
 
+use UthandoDomPdf\Form\DomPdfOptionsFieldSet;
+use UthandoDomPdf\Form\DomPdfSettings;
+use UthandoDomPdf\Form\PdfOptionsFieldSet;
+use UthandoDomPdf\Form\PdfTextLineFieldSet;
+use UthandoDomPdf\Form\PdfTextLineFontFieldSet;
+use Zend\ServiceManager\Factory\InvokableFactory;
+
 return [
     'controllers' => [
         'invokables' => [
@@ -7,12 +14,12 @@ return [
         ],
     ],
     'form_elements' => [
-        'invokables' => [
-            'DomPdfOptionsFieldSet'     => 'UthandoDomPdf\Form\DomPdfOptionsFieldSet',
-            'DomPdfSettings'            => 'UthandoDomPdf\Form\DomPdfSettings',
-            'PdfOptionsFieldSet'        => 'UthandoDomPdf\Form\PdfOptionsFieldSet',
-            'PdfTextLineFieldSet'       => 'UthandoDomPdf\Form\PdfTextLineFieldSet',
-            'PdfTextLineFontFieldSet'   => 'UthandoDomPdf\Form\PdfTextLineFontFieldSet',
+        'factories' => [
+            DomPdfOptionsFieldSet::class    => InvokableFactory::class,
+            DomPdfSettings::class           => InvokableFactory::class,
+            PdfOptionsFieldSet::class       => InvokableFactory::class,
+            PdfTextLineFieldSet::class      => InvokableFactory::class,
+            PdfTextLineFontFieldSet::class  => InvokableFactory::class,
         ],
     ],
     'service_manager' => [
