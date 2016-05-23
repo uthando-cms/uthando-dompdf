@@ -67,7 +67,7 @@
     "giggsey/libphonenumber-for-php": "7.*",
     "phpoffice/phpexcel": "1.*",
     "neilime/zf2-twb-bundle": "2.*@stable",
-    "dompdf/dompdf": "0.6.*",
+    "dompdf/dompdf": "0.7.*",
     "codeclimate/php-test-reporter": "dev-master",
     "squizlabs/php_codesniffer": "2.0"
   },

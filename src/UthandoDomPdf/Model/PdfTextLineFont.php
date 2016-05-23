@@ -65,14 +65,6 @@ class PdfTextLineFont
     /**
      * @return string
      */
-    public function renderMetric()
-    {
-        return \Font_Metrics::get_font($this->getFamily(), $this->getWeight());
-    }
-
-    /**
-     * @return string
-     */
     public function getFamily()
     {
         return $this->family;

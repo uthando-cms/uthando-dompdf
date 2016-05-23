@@ -29,7 +29,7 @@
     "zendframework/zend-stdlib": "2.*",
     "zendframework/zend-view": "2.*",
     "uthando-cms/uthando-common": "2.*",
-    "dompdf/dompdf": "0.6.*",
+    "dompdf/dompdf": "0.7.*",
     "neilime/zf2-twb-bundle": "2.*@stable"
   },
   "require-dev": {

@@ -10,14 +10,12 @@
 
 namespace UthandoDomPdfTest\View\Renderer;
 
-use UthandoDomPdf\Options\PdfOptions;
-use UthandoDomPdf\View\Model\PdfModel;
+use Dompdf\Dompdf;
 use UthandoDomPdf\View\Renderer\PdfRenderer;
 use UthandoDomPdf\View\Strategy\PdfStrategy;
 use UthandoDomPdfTest\Framework\TestCase;
 use Zend\View\Resolver\TemplatePathStack;
 use Zend\View\Renderer\PhpRenderer;
-use Zend\View\ViewEvent;
 use Zend\Http\Response as HttpResponse;
 
 class PdfRenderTest extends TestCase
@@ -56,9 +54,9 @@ class PdfRenderTest extends TestCase
     public function testSetGetEngine()
     {
         $pdfRenderer = new PdfRenderer();
-        $engine = new \DOMPDF();
+        $engine = new Dompdf();
         $pdfRenderer->setEngine($engine);
-        $this->assertInstanceOf('DOMPDF', $pdfRenderer->getEngine());
+        $this->assertInstanceOf(Dompdf::class, $pdfRenderer->getEngine());
     }
 
     public function testSetGetHtmlRenderer()

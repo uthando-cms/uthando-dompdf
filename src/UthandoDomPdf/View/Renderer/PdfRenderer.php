@@ -15,7 +15,7 @@ use UthandoDomPdf\View\Model\PdfModel;
 use Zend\View\Model\ModelInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
 use Zend\View\Resolver\ResolverInterface as Resolver;
-use DOMPDF;
+use Dompdf\Dompdf;
 
 /**
  * Class PdfRenderer
@@ -25,7 +25,7 @@ use DOMPDF;
 class PdfRenderer implements Renderer
 {
     /**
-     * @var DOMPDF
+     * @var Dompdf
      */
     private $dompdf;
 
@@ -61,7 +61,7 @@ class PdfRenderer implements Renderer
      * @param DOMPDF $dompdf
      * @return $this
      */
-    public function setEngine(DOMPDF $dompdf)
+    public function setEngine(Dompdf $dompdf)
     {
         $this->dompdf = $dompdf;
         return $this;
@@ -92,12 +92,12 @@ class PdfRenderer implements Renderer
         $paperSize          = (count($paperSize) === 1) ? $paperSize[0] : $paperSize;
         
         $pdf = $this->getEngine();
-        $pdf->set_paper($paperSize, $paperOrientation);
-        $pdf->set_base_path($basePath);
+        $pdf->setPaper($paperSize, $paperOrientation);
+        $pdf->setBasePath($basePath);
 
         $html = $this->getHtmlRenderer()->render($nameOrModel, $values);
 
-        $pdf->load_html($html);
+        $pdf->loadHtml($html);
         $pdf->render();
 
         $pdf = $this->processHeader($pdf, $pdfOptions);
@@ -107,11 +107,11 @@ class PdfRenderer implements Renderer
     }
 
     /**
-     * @param DOMPDF $pdf
+     * @param Dompdf $pdf
      * @param PdfOptions $pdfOptions
-     * @return DOMPDF
+     * @return Dompdf
      */
-    private function processHeader(DOMPDF $pdf, PdfOptions $pdfOptions)
+    private function processHeader(Dompdf $pdf, PdfOptions $pdfOptions)
     {
         if (empty($pdfOptions->getHeaderLines())) {
             return $pdf;
@@ -121,11 +121,11 @@ class PdfRenderer implements Renderer
     }
 
     /**
-     * @param DOMPDF $pdf
+     * @param Dompdf $pdf
      * @param PdfOptions $pdfOptions
-     * @return DOMPDF
+     * @return Dompdf
      */
-    private function processFooter(DOMPDF $pdf, PdfOptions $pdfOptions)
+    private function processFooter(Dompdf $pdf, PdfOptions $pdfOptions)
     {
         if (empty($pdfOptions->getFooterLines())) {
             return $pdf;
@@ -135,27 +135,28 @@ class PdfRenderer implements Renderer
     }
 
     /**
-     * @param DOMPDF $pdf
+     * @param Dompdf $pdf
      * @param PdfOptions $pdfOptions
      * @param $position
-     * @return DOMPDF
+     * @return Dompdf
      */
-    private function processPageLines(DOMPDF $pdf, PdfOptions $pdfOptions, $position)
+    private function processPageLines(Dompdf $pdf, PdfOptions $pdfOptions, $position)
     {
         $pageLines      = ('header' === $position) ? $pdfOptions->getHeaderLines() : $pdfOptions->getFooterLines();
-        $canvas         = $pdf->get_canvas();
+        $canvas         = $pdf->getCanvas();
         $pageWidth      = $canvas->get_width();
         $pageHeight     = ('header' === $position) ? $pdfOptions->getTopMargin() : $canvas->get_height() - $pdfOptions->getBottomMargin();
         $previousHeight = 5; // margin
         $pageCount      = $canvas->get_page_count();
         $pageNumberMap  = ['/{PAGE_COUNT}/', '/{PAGE_NUM}/',];
+        $fontMetric     = $pdf->getFontMetrics();
 
         /* @var $line \UthandoDomPdf\Model\PdfTextLine */
         foreach ($pageLines as $line) {
-            $font           = $line->getFont()->renderMetric();
+            $font           = $fontMetric->getFont($line->getFont()->getFamily(), $line->getFont()->getWeight());
             $size           = $line->getFont()->getSize();
             $text           = $line->getText();
-            $fontHeight     = \Font_Metrics::get_font_height($font, $size);
+            $fontHeight     = $fontMetric->getFontHeight($font, $size);
             $textWidth      = $canvas->get_text_width(
                 preg_replace($pageNumberMap, $pageCount, $text), $font, $size
             );

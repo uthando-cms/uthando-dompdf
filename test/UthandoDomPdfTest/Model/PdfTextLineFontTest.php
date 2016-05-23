@@ -46,12 +46,4 @@ class PdfTextLineFontTest extends TestCase
 
         $this->fail('Expected exception "Zend\Stdlib\Exception\InvalidArgumentException" not thrown');
     }
-
-    public function testRenderFontMetricsReturnsString()
-    {
-        $dompdf = $this->serviceManager->get('dompdf');
-
-        $fontString = $this->model->renderMetric();
-        $this->assertSame($fontString, DOMPDF_FONT_DIR . 'Helvetica');
-    }
 }
