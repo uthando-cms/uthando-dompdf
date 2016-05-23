@@ -10,7 +10,11 @@
 
 namespace UthandoDomPdfTest\Form;
 
+use UthandoDomPdf\Form\DomPdfOptionsFieldSet;
+use UthandoDomPdf\Form\DomPdfSettings;
+use UthandoDomPdf\Form\PdfOptionsFieldSet;
 use UthandoDomPdfTest\Framework\TestCase;
+use Zend\Form\Element\Submit;
 
 class DomPdfSettingsFormTest extends TestCase
 {
@@ -18,13 +22,13 @@ class DomPdfSettingsFormTest extends TestCase
     {
         /* @var $form \UthandoDomPdf\Form\DomPdfSettings */
         $form = $this->serviceManager->get('FormElementManager')
-            ->get('DomPdfSettings');
+            ->get(DomPdfSettings::class);
 
-        $this->assertInstanceOf('UthandoDomPdf\Form\DomPdfSettings', $form);
+        $this->assertInstanceOf(DomPdfSettings::class, $form);
 
         // check form elements are created
-        $this->assertInstanceOf('UthandoDomPdf\Form\PdfOptionsFieldSet', $form->get('pdf_options'));
-        $this->assertInstanceOf('UthandoDomPdf\Form\DomPdfOptionsFieldSet', $form->get('dompdf_options'));
-        $this->assertInstanceOf('Zend\Form\Element\Submit', $form->get('button-submit'));
+        $this->assertInstanceOf(PdfOptionsFieldSet::class, $form->get('pdf_options'));
+        $this->assertInstanceOf(DomPdfOptionsFieldSet::class, $form->get('dompdf_options'));
+        $this->assertInstanceOf(Submit::class, $form->get('button-submit'));
     }
 }

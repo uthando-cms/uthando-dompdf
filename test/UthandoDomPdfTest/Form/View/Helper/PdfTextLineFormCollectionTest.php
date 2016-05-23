@@ -10,6 +10,8 @@
 
 namespace UthandoDomPdfTest\Form\View\Helper;
 
+use UthandoDomPdf\Form\DomPdfSettings;
+use UthandoDomPdf\Form\View\Helper\PdfTextLineFormCollection;
 use UthandoDomPdfTest\Framework\ApplicationTestCase;
 
 class PdfTextLineFormCollectionTest extends ApplicationTestCase
@@ -20,7 +22,7 @@ class PdfTextLineFormCollectionTest extends ApplicationTestCase
             ->get('ViewHelperManager')
             ->get('PdfTextLineFormCollection');
 
-        $this->assertInstanceOf('UthandoDomPdf\Form\View\Helper\PdfTextLineFormCollection', $viewHelper);
+        $this->assertInstanceOf(PdfTextLineFormCollection::class, $viewHelper);
     }
 
     public function testRender()
@@ -43,7 +45,7 @@ class PdfTextLineFormCollectionTest extends ApplicationTestCase
 
         $form = $this->getApplicationServiceLocator()
             ->get('FormElementManager')
-            ->get('DomPdfSettings');
+            ->get(DomPdfSettings::class);
 
         $form->setData($testData);
 
