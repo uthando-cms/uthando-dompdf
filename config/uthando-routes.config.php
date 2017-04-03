@@ -13,7 +13,6 @@ return [
         						'__NAMESPACE__' => 'UthandoDomPdf\Controller',
         						'controller'    => 'Settings',
         						'action'        => 'index',
-        					    'force-ssl'     => 'ssl'
         					],
         				],
         				'may_terminate' => true,

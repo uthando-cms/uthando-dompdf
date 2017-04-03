@@ -10,7 +10,7 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 return [
     'controllers' => [
         'invokables' => [
-            'UthandoDomPdf\Controller\Settings' => 'UthandoDomPdf\Mvc\Controller\Settings',
+            'UthandoDomPdf\Controller\Settings' => \UthandoDomPdf\Mvc\Controller\Settings::class,
         ],
     ],
     'form_elements' => [
@@ -31,16 +31,16 @@ return [
             'DomPdf' => false
         ],
         'factories' => [
-            'DomPdf'            => 'UthandoDomPdf\Service\DomPdfFactory',
-            'DomPdfOptions'     => 'UthandoDomPdf\Service\DomPdfOptionsFactory',
-            'PdfModel'          => 'UthandoDomPdf\Service\PdfModelFactory',
-            'ViewPdfRenderer'   => 'UthandoDomPdf\Mvc\Service\ViewPdfRendererFactory',
-            'ViewPdfStrategy'   => 'UthandoDomPdf\Mvc\Service\ViewPdfStrategyFactory',
+            'DomPdf'            => \UthandoDomPdf\Service\DomPdfFactory::class,
+            'DomPdfOptions'     => \UthandoDomPdf\Service\DomPdfOptionsFactory::class,
+            'PdfModel'          => \UthandoDomPdf\Service\PdfModelFactory::class,
+            'ViewPdfRenderer'   => \UthandoDomPdf\Mvc\Service\ViewPdfRendererFactory::class,
+            'ViewPdfStrategy'   => \UthandoDomPdf\Mvc\Service\ViewPdfStrategyFactory::class,
         ]
     ],
     'view_helpers' => [
         'invokables' => [
-            'PdfTextLineFormCollection' => 'UthandoDomPdf\Form\View\Helper\PdfTextLineFormCollection',
+            'PdfTextLineFormCollection' => \UthandoDomPdf\Form\View\Helper\PdfTextLineFormCollection::class,
         ],
     ],
     'view_manager' => [
