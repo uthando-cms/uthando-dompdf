@@ -1,5 +1,23 @@
 <?php $this->HeadTitle('Dom Pdf Settings'); ?>
 
+<?php $this->HeadTitle('Contact Settings'); ?>
+<?php $this->layout()->pageTitle = $this->translate('Dom Pdf Settings'); ?>
+
+<?php $this->placeholder('header-buttons')->captureStart();?>
+<button type="submit" form="form-dompdf" data-toggle="tooltip" title="<?=$this->translate('Save');?>" class="btn btn-primary">
+    <i class="fa fa-save"></i>
+</button>
+<a href="<?=$this->url('admin');?>" type="submit" form="form-dompdf" data-toggle="tooltip" title="<?=$this->translate('Cancel');?>" class="btn btn-default">
+    <i class="fa fa-reply"></i>
+</a>
+<?php $this->placeholder('header-buttons')->captureEnd();?>
+
+<?php $this->form->setAttributes([
+    'method' => 'post',
+    'id' => 'form-dompdf',
+    'action' => $this->url('admin/dompdf'),
+]); ?>
+
 <?php
 $form = $this->form;
 $form->prepare();
@@ -7,62 +25,66 @@ $form->prepare();
 $pdfOptions = $form->get('pdf_options');
 $domPdfOptions = $form->get('dompdf_options');
 ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-cog"></i> <?=$this->translate('Contact Settings');?></h3>
+    </div>
+    <div class="panel-body">
+        <?=$this->form(null, \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)->openTag($form);?>
 
-<?=$this->form(null, \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)->openTag($form);?>
+        <fieldset class="<?=$pdfOptions->getAttribute('class');?>">
+            <legend><?=$pdfOptions->getLabel();?></legend>
+            <?=$this->formRow($pdfOptions->get('paper_size'));?>
+            <?=$this->formRow($pdfOptions->get('paper_orientation'));?>
+            <?=$this->formRow($pdfOptions->get('top_margin'));?>
+            <?=$this->formRow($pdfOptions->get('right_margin'));?>
+            <?=$this->formRow($pdfOptions->get('bottom_margin'));?>
+            <?=$this->formRow($pdfOptions->get('left_margin'));?>
+            <?=$this->formRow($pdfOptions->get('base_path'));?>
+            <?=$this->formRow($pdfOptions->get('file_name'));?>
 
-    <fieldset class="<?=$pdfOptions->getAttribute('class');?>">
-        <legend><?=$pdfOptions->getLabel();?></legend>
-        <?=$this->formRow($pdfOptions->get('paper_size'));?>
-        <?=$this->formRow($pdfOptions->get('paper_orientation'));?>
-        <?=$this->formRow($pdfOptions->get('top_margin'));?>
-        <?=$this->formRow($pdfOptions->get('right_margin'));?>
-        <?=$this->formRow($pdfOptions->get('bottom_margin'));?>
-        <?=$this->formRow($pdfOptions->get('left_margin'));?>
-        <?=$this->formRow($pdfOptions->get('base_path'));?>
-        <?=$this->formRow($pdfOptions->get('file_name'));?>
+            <div class="col-md-12">
 
-        <div class="col-md-12">
-
-            <div id="pdf-header-lines" class="panel panel-info">
-                <!-- Default panel contents -->
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                            PDF Header Lines (<?=$pdfOptions->get('header_lines')->count();?>)
-                        <button id="add-header-line-button" class="btn btn-default btn-xs">
-                            Add Line
-                        </button>
-                    </h4>
+                <div id="pdf-header-lines" class="panel panel-info">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                                PDF Header Lines (<?=$pdfOptions->get('header_lines')->count();?>)
+                            <button id="add-header-line-button" class="btn btn-default btn-xs">
+                                Add Line
+                            </button>
+                        </h4>
+                    </div>
+                    <div class="panel-table">
+                        <?php $this->pdfTextLineFormCollection()->setLineType('header');?>
+                        <?=$this->pdfTextLineFormCollection($pdfOptions->get('header_lines'), false);?>
+                    </div>
                 </div>
-                <div class="panel-table">
-                    <?php $this->pdfTextLineFormCollection()->setLineType('header');?>
-                    <?=$this->pdfTextLineFormCollection($pdfOptions->get('header_lines'), false);?>
+
+                <div id="pdf-footer-lines" class="panel panel-info">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                                PDF Footer Lines (<?=$pdfOptions->get('footer_lines')->count();?>)
+                            <button id="add-footer-line-button" class="btn btn-default btn-xs">
+                                Add Line
+                            </button>
+                        </h4>
+                    </div>
+                    <div class="panel-table">
+                        <?php $this->pdfTextLineFormCollection()->setLineType('footer');?>
+                        <?=$this->pdfTextLineFormCollection($pdfOptions->get('footer_lines'), false);?>
+                    </div>
                 </div>
+
             </div>
+        </fieldset>
 
-            <div id="pdf-footer-lines" class="panel panel-info">
-                <!-- Default panel contents -->
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                            PDF Footer Lines (<?=$pdfOptions->get('footer_lines')->count();?>)
-                        <button id="add-footer-line-button" class="btn btn-default btn-xs">
-                            Add Line
-                        </button>
-                    </h4>
-                </div>
-                <div class="panel-table">
-                    <?php $this->pdfTextLineFormCollection()->setLineType('footer');?>
-                    <?=$this->pdfTextLineFormCollection($pdfOptions->get('footer_lines'), false);?>
-                </div>
-            </div>
+        <?=$this->formCollection($domPdfOptions);?>
 
-        </div>
-    </fieldset>
-
-    <?=$this->formCollection($domPdfOptions);?>
-
-    <?=$this->formRow($form->get('button-submit'));?>
-
-<?=$this->form()->closeTag();?>
+        <?=$this->form()->closeTag();?>
+    </div>
+</div>
 
 <div class="clearfix"></div>
 

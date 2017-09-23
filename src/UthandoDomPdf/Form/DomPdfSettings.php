@@ -47,18 +47,5 @@ class DomPdfSettings extends Form
                 'class' => 'col-md-6',
             ],
         ]);
-
-        $this->add([
-            'name' => 'button-submit',
-            'type' => 'submit',
-            'attributes' => [
-                'type' => 'submit',
-                'class' => 'btn-primary'
-            ],
-            'options' => [
-                'label' => 'Save',
-                'column-size' => 'md-6'
-            ],
-        ]);
     }
 }
