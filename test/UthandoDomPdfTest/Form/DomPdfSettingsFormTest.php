@@ -29,6 +29,5 @@ class DomPdfSettingsFormTest extends TestCase
         // check form elements are created
         $this->assertInstanceOf(PdfOptionsFieldSet::class, $form->get('pdf_options'));
         $this->assertInstanceOf(DomPdfOptionsFieldSet::class, $form->get('dompdf_options'));
-        $this->assertInstanceOf(Submit::class, $form->get('button-submit'));
     }
 }
