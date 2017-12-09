@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -11,6 +11,7 @@
 namespace UthandoDomPdf\Model;
 
 use UthandoCommon\Model\Model;
+use UthandoCommon\Model\ModelInterface;
 use Zend\Stdlib\Exception\InvalidArgumentException;
 
 /**
@@ -18,7 +19,7 @@ use Zend\Stdlib\Exception\InvalidArgumentException;
  *
  * @package UthandoDomPdf\Model
  */
-class PdfTextLineFont
+class PdfTextLineFont implements ModelInterface
 {
     use Model;
 

@@ -10,6 +10,8 @@
 
 namespace UthandoDomPdf\Model;
 
+use UthandoCommon\Model\Model;
+use UthandoCommon\Model\ModelInterface;
 use Zend\Stdlib\Exception\InvalidArgumentException;
 
 /**
@@ -17,8 +19,10 @@ use Zend\Stdlib\Exception\InvalidArgumentException;
  *
  * @package UthandoDomPdf\Model
  */
-class PdfTextLine
+class PdfTextLine implements ModelInterface
 {
+    use Model;
+
     /**
      * @var string
      */
@@ -121,5 +125,16 @@ class PdfTextLine
         }
 
         return $this;
+    }
+
+    public function getArrayCopy()
+    {
+        $array = get_object_vars($this);
+
+        if ($array['font'] instanceof  PdfTextLineFont) {
+            $array['font'] = $array['font']->getArrayCopy();
+        }
+
+        return $array;
     }
 }

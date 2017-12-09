@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -32,7 +32,7 @@ class PdfTextLineFieldSet extends Fieldset implements InputFilterProviderInterfa
         parent::__construct($name, $options);
 
         $this->setObject(new PdfTextLine())
-            ->setObject(new ClassMethods());
+            ->setHydrator(new ClassMethods());
     }
 
     /**

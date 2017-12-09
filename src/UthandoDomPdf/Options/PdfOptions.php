@@ -10,6 +10,8 @@
 
 namespace UthandoDomPdf\Options;
 
+use UthandoCommon\Model\AbstractCollection;
+use UthandoCommon\Model\ModelInterface;
 use UthandoDomPdf\Model\PdfFooterCollection;
 use UthandoDomPdf\Model\PdfHeaderCollection;
 use Zend\Stdlib\AbstractOptions;
@@ -202,6 +204,28 @@ class PdfOptions extends AbstractOptions
         $this->footerLines = $footerLines;
 
         return $this;
+    }
+
+    public function toArray()
+    {
+        $array = parent::toArray();
+        $returnArray = [];
+
+        foreach ($array as $key => $value) {
+
+            if ($value instanceof AbstractCollection) {
+                $entities = $value->getEntities();
+                foreach ($entities as $item => $model) {
+                    if ($model instanceof ModelInterface) {
+                        $returnArray[$key][$item] = $model->getArrayCopy();
+                    }
+                }
+            } else {
+                $returnArray[$key] = $value;
+            }
+        }
+
+        return $returnArray;
     }
 
     /**

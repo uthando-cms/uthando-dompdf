@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -11,6 +11,7 @@
 namespace UthandoDomPdf\Form;
 
 use TwbBundle\Form\View\Helper\TwbBundleForm;
+use UthandoCommon\Hydrator\Strategy\CollectionToArrayStrategy;
 use UthandoDomPdf\Options\PdfOptions;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
@@ -27,7 +28,11 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
     {
         parent::__construct($name, $options);
 
-        $this->setHydrator(new ClassMethods())
+        $hydrator = new ClassMethods();
+        $hydrator->addStrategy('header_lines', new CollectionToArrayStrategy());
+        $hydrator->addStrategy('footer_lines', new CollectionToArrayStrategy());
+
+        $this->setHydrator($hydrator)
             ->setObject(new PdfOptions());
     }
 
