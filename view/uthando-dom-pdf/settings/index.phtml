@@ -88,7 +88,7 @@ $domPdfOptions = $form->get('dompdf_options');
 
 <div class="clearfix"></div>
 
-
+<?php $this->placeholder('js-scripts')->captureStart();?>
 <script type="text/javascript">
     $('#add-header-line-button').on('click', function(e){
         e.preventDefault();
@@ -129,3 +129,5 @@ $domPdfOptions = $form->get('dompdf_options');
         row.remove();
     });
 </script>
+<?php $this->placeholder('js-scripts')->captureEnd();?>
+
