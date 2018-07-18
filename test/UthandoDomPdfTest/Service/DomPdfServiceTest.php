@@ -9,14 +9,14 @@ class DomPdfServiceTest extends TestCase
 {
     public function testCanCreateInstanceFromServiceManager()
     {
-        $model = $this->serviceManager->get('dompdf');
+        $model = $this->serviceManager->get(Dompdf::class);
         $this->assertInstanceOf(Dompdf::class, $model);
     }
 
     public function testUniqueInstancesFromFactory()
     {
-        $dompdfInstance1 = $this->serviceManager->get('dompdf');
-        $dompdfInstance2 = $this->serviceManager->get('dompdf');
+        $dompdfInstance1 = $this->serviceManager->get(Dompdf::class);
+        $dompdfInstance2 = $this->serviceManager->get(Dompdf::class);
         
         $this->assertNotSame($dompdfInstance1, $dompdfInstance2);
     }

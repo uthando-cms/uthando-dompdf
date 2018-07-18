@@ -10,6 +10,7 @@
 
 namespace UthandoDomPdfTest\Mvc\Service;
 
+use UthandoDomPdf\View\Strategy\PdfStrategy;
 use UthandoDomPdfTest\Framework\ApplicationTestCase;
 
 class ViewPdfStrategyFactoryTest extends ApplicationTestCase
@@ -17,7 +18,7 @@ class ViewPdfStrategyFactoryTest extends ApplicationTestCase
     public function testCanCreateService()
     {
         $service = $this->getApplicationServiceLocator()
-            ->get('ViewPdfStrategy');
+            ->get(PdfStrategy::class);
         $this->assertInstanceOf('UthandoDomPdf\View\Strategy\PdfStrategy', $service);
     }
 }

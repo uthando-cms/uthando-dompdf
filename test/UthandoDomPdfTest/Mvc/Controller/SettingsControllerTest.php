@@ -11,6 +11,7 @@
 namespace UthandoDomPdfTest\Mvc\Controller;
 
 use UthandoDomPdf\Form\DomPdfSettings;
+use UthandoDomPdf\Mvc\Controller\SettingsController;
 use UthandoDomPdfTest\Framework\TestCase;
 
 class SettingsControllerTest extends TestCase
@@ -19,7 +20,7 @@ class SettingsControllerTest extends TestCase
     {
         /* @var $controller \UthandoDomPdf\Mvc\Controller\SettingsController */
         $controller = $this->serviceManager->get('ControllerManager')
-            ->get('UthandoDomPdf\Controller\Settings');
+            ->get(SettingsController::class);
 
         $this->assertInstanceOf('UthandoDomPdf\Mvc\Controller\SettingsController', $controller);
         $this->assertSame(DomPdfSettings::class, $controller->getFormName());
