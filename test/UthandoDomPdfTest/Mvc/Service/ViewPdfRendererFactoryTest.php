@@ -10,7 +10,6 @@
 
 namespace UthandoDomPdfTest\Mvc\Service;
 
-use UthandoDomPdf\View\Renderer\PdfRenderer;
 use UthandoDomPdfTest\Framework\ApplicationTestCase;
 
 class ViewPdfRendererFactoryTest extends ApplicationTestCase
@@ -18,7 +17,7 @@ class ViewPdfRendererFactoryTest extends ApplicationTestCase
     public function testCanCreateService()
     {
         $service = $this->getApplicationServiceLocator()
-            ->get(PdfRenderer::class);
+            ->get('ViewPdfRenderer');
         $this->assertInstanceOf('UthandoDomPdf\View\Renderer\PdfRenderer', $service);
     }
 }

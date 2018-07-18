@@ -8,14 +8,14 @@ return [
                     'privileges' => [
                         'allow' => [
                             'controllers' => [
-                                \UthandoDomPdf\Mvc\Controller\SettingsController::class => ['action' => 'all'],
+                                'UthandoDomPdf\Controller\Settings' => ['action' => 'all'],
                             ],
                         ],
                     ],
                 ],
             ],
             'resources' => [
-                \UthandoDomPdf\Mvc\Controller\SettingsController::class,
+                'UthandoDomPdf\Controller\Settings',
             ],
         ],
     ],

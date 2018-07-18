@@ -19,7 +19,7 @@ use Zend\Mvc\Controller\AbstractActionController;
  *
  * @package Settings\Mvc\Controller
  */
-class SettingsController extends AbstractActionController
+class Settings extends AbstractActionController
 {
     use SettingsTrait;
 

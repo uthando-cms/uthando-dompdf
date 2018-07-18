@@ -10,7 +10,6 @@
 
 namespace UthandoDomPdfTest\Service;
 
-use UthandoDomPdf\Options\DomPdfOptions;
 use UthandoDomPdf\Service\DomPdfOptionsFactory;
 use UthandoDomPdfTest\Framework\TestCase;
 
@@ -18,7 +17,7 @@ class DomPdfOptionsFactoryTest extends TestCase
 {
     public function testCanCreateInstanceFromServiceManager()
     {
-        $model = $this->serviceManager->get(DomPdfOptions::class);
+        $model = $this->serviceManager->get('DomPdfOptions');
         $this->assertInstanceOf('UthandoDomPdf\Options\DomPdfOptions', $model);
     }
 

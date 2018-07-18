@@ -2,7 +2,6 @@
 
 namespace UthandoDomPdfTest\View\Strategy;
 
-use Dompdf\Dompdf;
 use Zend\View\Model\ViewModel;
 use Zend\View\Resolver\TemplatePathStack;
 use Zend\View\Renderer\PhpRenderer;
@@ -56,7 +55,7 @@ class PdfStrategyTest extends TestCase
         $htmlRenderer = new PhpRenderer();
         $htmlRenderer->setResolver($this->resolver);
         $this->renderer->setHtmlRenderer($htmlRenderer);
-        $this->renderer->setEngine($this->serviceManager->get(Dompdf::class));
+        $this->renderer->setEngine($this->serviceManager->get('dompdf'));
     }
 
     public function testPdfModelSelectsPdfStrategy()
@@ -85,7 +84,7 @@ class PdfStrategyTest extends TestCase
 
     public function testContentTypeResponseHeader()
     {
-        $model = $this->serviceManager->get(PdfModel::class);
+        $model = $this->serviceManager->get('PdfModel');
         $model->setTemplate('basic.phtml');
         
         $this->event->setModel($model);
@@ -105,7 +104,7 @@ class PdfStrategyTest extends TestCase
 
     public function testResponseHeadersWithFileName()
     {
-        $model = $this->serviceManager->get(PdfModel::class);
+        $model = $this->serviceManager->get('PdfModel');
         $model->setTemplate('basic.phtml');
         $model->getPdfOptions()
             ->setFilename('testPdfFileName');

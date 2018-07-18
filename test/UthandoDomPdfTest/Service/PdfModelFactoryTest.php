@@ -11,14 +11,13 @@
 namespace UthandoDomPdfTest\Service;
 
 use UthandoDomPdf\Service\PdfModelFactory;
-use UthandoDomPdf\View\Model\PdfModel;
 use UthandoDomPdfTest\Framework\TestCase;
 
 class PdfModelFactoryTest extends TestCase
 {
     public function testCanCreateInstanceFromServiceManager()
     {
-        $model = $this->serviceManager->get(PdfModel::class);
+        $model = $this->serviceManager->get('PdfModel');
         $this->assertInstanceOf('UthandoDomPdf\View\Model\PdfModel', $model);
     }
 

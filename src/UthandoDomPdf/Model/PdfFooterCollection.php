@@ -22,7 +22,7 @@ class PdfFooterCollection extends AbstractCollection
     /**
      * @var string
      */
-    protected $entityClass = PdfTextLine::class;
+    protected $entityClass = 'UthandoDomPdf\Model\PdfTextLine';
 
     /**
      * @var bool
