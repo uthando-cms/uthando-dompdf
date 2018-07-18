@@ -11,7 +11,7 @@ return [
         					'route'    => '/dompdf',
         					'defaults' => [
         						'__NAMESPACE__' => 'UthandoDomPdf\Controller',
-        						'controller'    => 'Settings',
+        						'controller'    => \UthandoDomPdf\Mvc\Controller\SettingsController::class,
         						'action'        => 'index',
         					],
         				],

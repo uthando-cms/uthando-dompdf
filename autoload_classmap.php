@@ -12,7 +12,7 @@ return array(
     'UthandoDomPdf\Model\PdfHeaderCollection'                  => __DIR__ . '/src/UthandoDomPdf/Model/PdfHeaderCollection.php',
     'UthandoDomPdf\Model\PdfTextLine'                          => __DIR__ . '/src/UthandoDomPdf/Model/PdfTextLine.php',
     'UthandoDomPdf\Model\PdfTextLineFont'                      => __DIR__ . '/src/UthandoDomPdf/Model/PdfTextLineFont.php',
-    'UthandoDomPdf\Mvc\Controller\Settings'                    => __DIR__ . '/src/UthandoDomPdf/Mvc/Controller/Settings.php',
+    'UthandoDomPdf\Mvc\Controller\SettingsController' => __DIR__ . '/src/UthandoDomPdf/Mvc/Controller/Settings.php',
     'UthandoDomPdf\Mvc\Service\ViewPdfRendererFactory'         => __DIR__ . '/src/UthandoDomPdf/Mvc/Service/ViewPdfRendererFactory.php',
     'UthandoDomPdf\Mvc\Service\ViewPdfStrategyFactory'         => __DIR__ . '/src/UthandoDomPdf/Mvc/Service/ViewPdfStrategyFactory.php',
     'UthandoDomPdf\Options\DomPdfOptions'                      => __DIR__ . '/src/UthandoDomPdf/Options/DomPdfOptions.php',

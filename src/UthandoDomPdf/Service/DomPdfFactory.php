@@ -10,6 +10,7 @@
 
 namespace UthandoDomPdf\Service;
 
+use UthandoDomPdf\Options\DomPdfOptions;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Dompdf\Dompdf;
@@ -30,7 +31,7 @@ class DomPdfFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         /* @var \UthandoDomPdf\Options\DomPdfOptions $config */
-        $config = $serviceLocator->get('DomPdfOptions');
+        $config = $serviceLocator->get(DomPdfOptions::class);
         $options = $config->toArray();
         
         return new Dompdf($options);

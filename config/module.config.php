@@ -1,16 +1,28 @@
 <?php
 
+use Dompdf\Dompdf;
 use UthandoDomPdf\Form\DomPdfOptionsFieldSet;
 use UthandoDomPdf\Form\DomPdfSettings;
 use UthandoDomPdf\Form\PdfOptionsFieldSet;
 use UthandoDomPdf\Form\PdfTextLineFieldSet;
 use UthandoDomPdf\Form\PdfTextLineFontFieldSet;
+use UthandoDomPdf\Form\View\Helper\PdfTextLineFormCollection;
+use UthandoDomPdf\Mvc\Controller\SettingsController;
+use UthandoDomPdf\Mvc\Service\ViewPdfRendererFactory;
+use UthandoDomPdf\Mvc\Service\ViewPdfStrategyFactory;
+use UthandoDomPdf\Options\DomPdfOptions;
+use UthandoDomPdf\Service\DomPdfFactory;
+use UthandoDomPdf\Service\DomPdfOptionsFactory;
+use UthandoDomPdf\Service\PdfModelFactory;
+use UthandoDomPdf\View\Model\PdfModel;
+use UthandoDomPdf\View\Renderer\PdfRenderer;
+use UthandoDomPdf\View\Strategy\PdfStrategy;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'controllers' => [
         'invokables' => [
-            'UthandoDomPdf\Controller\Settings' => \UthandoDomPdf\Mvc\Controller\Settings::class,
+            SettingsController::class => SettingsController::class,
         ],
     ],
     'form_elements' => [
@@ -28,24 +40,24 @@ return [
              * DOMPDF itself has issues rendering twice in a row so we force a
              * new instance to be created.
              */
-            'DomPdf' => false
+            Dompdf::class => false
         ],
         'factories' => [
-            'DomPdf'            => \UthandoDomPdf\Service\DomPdfFactory::class,
-            'DomPdfOptions'     => \UthandoDomPdf\Service\DomPdfOptionsFactory::class,
-            'PdfModel'          => \UthandoDomPdf\Service\PdfModelFactory::class,
-            'ViewPdfRenderer'   => \UthandoDomPdf\Mvc\Service\ViewPdfRendererFactory::class,
-            'ViewPdfStrategy'   => \UthandoDomPdf\Mvc\Service\ViewPdfStrategyFactory::class,
+            Dompdf::class           => DomPdfFactory::class,
+            DomPdfOptions::class    => DomPdfOptionsFactory::class,
+            PdfModel::class         => PdfModelFactory::class,
+            PdfRenderer::class      => ViewPdfRendererFactory::class,
+            PdfStrategy::class      => ViewPdfStrategyFactory::class,
         ]
     ],
     'view_helpers' => [
         'invokables' => [
-            'PdfTextLineFormCollection' => \UthandoDomPdf\Form\View\Helper\PdfTextLineFormCollection::class,
+            PdfTextLineFormCollection::class => PdfTextLineFormCollection::class,
         ],
     ],
     'view_manager' => [
         'strategies' => [
-            'ViewPdfStrategy'
+            PdfStrategy::class
         ],
         'template_map' => include __DIR__  .'/../template_map.php',
     ],

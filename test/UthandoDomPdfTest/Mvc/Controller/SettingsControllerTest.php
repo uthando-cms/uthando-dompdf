@@ -17,11 +17,11 @@ class SettingsControllerTest extends TestCase
 {
     public function testCanGetControllerFromServiceManager()
     {
-        /* @var $controller \UthandoDomPdf\Mvc\Controller\Settings */
+        /* @var $controller \UthandoDomPdf\Mvc\Controller\SettingsController */
         $controller = $this->serviceManager->get('ControllerManager')
             ->get('UthandoDomPdf\Controller\Settings');
 
-        $this->assertInstanceOf('UthandoDomPdf\Mvc\Controller\Settings', $controller);
+        $this->assertInstanceOf('UthandoDomPdf\Mvc\Controller\SettingsController', $controller);
         $this->assertSame(DomPdfSettings::class, $controller->getFormName());
         $this->assertSame('uthando_dompdf', $controller->getConfigKey());
     }
