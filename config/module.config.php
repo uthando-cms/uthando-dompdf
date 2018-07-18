@@ -51,9 +51,6 @@ return [
         ]
     ],
     'view_helpers' => [
-        'aliases' => [
-            'PdfTextLineFormCollection' => PdfTextLineFormCollection::class,
-        ],
         'invokables' => [
             PdfTextLineFormCollection::class => PdfTextLineFormCollection::class,
         ],

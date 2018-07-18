@@ -20,7 +20,7 @@ class PdfTextLineFormCollectionTest extends ApplicationTestCase
     {
         $viewHelper = $this->getApplicationServiceLocator()
             ->get('ViewHelperManager')
-            ->get('PdfTextLineFormCollection');
+            ->get(PdfTextLineFormCollection::class);
 
         $this->assertInstanceOf(PdfTextLineFormCollection::class, $viewHelper);
     }
@@ -51,7 +51,7 @@ class PdfTextLineFormCollectionTest extends ApplicationTestCase
 
         $viewHelper = $this->getApplicationServiceLocator()
             ->get('ViewHelperManager')
-            ->get('PdfTextLineFormCollection');
+            ->get(PdfTextLineFormCollection::class);
 
         $viewHelper->setLineType('footer');
 
