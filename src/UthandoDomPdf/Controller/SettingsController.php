@@ -8,7 +8,7 @@
  * @license   see LICENSE
  */
 
-namespace UthandoDomPdf\Mvc\Controller;
+namespace UthandoDomPdf\Controller;
 
 use UthandoCommon\Controller\SettingsTrait;
 use UthandoDomPdf\Form\DomPdfSettings;
@@ -19,7 +19,7 @@ use Zend\Mvc\Controller\AbstractActionController;
  *
  * @package Settings\Mvc\Controller
  */
-class Settings extends AbstractActionController
+class SettingsController extends AbstractActionController
 {
     use SettingsTrait;
 

@@ -1,5 +1,7 @@
 <?php
 
+use UthandoDomPdf\Controller\SettingsController;
+
 return [
     'router' => [
         'routes' => [
@@ -11,7 +13,7 @@ return [
         					'route'    => '/dompdf',
         					'defaults' => [
         						'__NAMESPACE__' => 'UthandoDomPdf\Controller',
-        						'controller'    => 'Settings',
+        						'controller'    => SettingsController::class,
         						'action'        => 'index',
         					],
         				],

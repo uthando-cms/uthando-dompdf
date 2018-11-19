@@ -22,7 +22,7 @@ class PdfHeaderCollection extends AbstractCollection
     /**
      * @var string
      */
-    protected $entityClass = 'UthandoDomPdf\Model\PdfTextLine';
+    protected $entityClass = PdfTextLine::class;
 
     /**
      * @param array $array

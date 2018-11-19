@@ -11,6 +11,11 @@
 namespace UthandoDomPdf\Form;
 
 use UthandoDomPdf\Model\PdfTextLineFont;
+use Zend\Filter\StringTrim;
+use Zend\Filter\StripTags;
+use Zend\Form\Element\Number;
+use Zend\Form\Element\Select;
+use Zend\Form\Element\Text;
 use Zend\Form\Fieldset;
 use Zend\Hydrator\ClassMethods;
 use Zend\InputFilter\InputFilterProviderInterface;
@@ -42,7 +47,7 @@ class PdfTextLineFontFieldSet extends Fieldset implements InputFilterProviderInt
     {
         $this->add([
             'name' => 'family',
-            'type' => 'text',
+            'type' => Text::class,
             'options' => [
                 'label' => 'Font Family',
                 'column-size' => 'md-8',
@@ -54,7 +59,7 @@ class PdfTextLineFontFieldSet extends Fieldset implements InputFilterProviderInt
 
         $this->add([
             'name' => 'weight',
-            'type' => 'select',
+            'type' => Select::class,
             'options' => [
                 'label' => 'Font Weight',
                 'label_attributes' => [
@@ -72,7 +77,7 @@ class PdfTextLineFontFieldSet extends Fieldset implements InputFilterProviderInt
 
         $this->add([
             'name' => 'size',
-            'type' => 'number',
+            'type' => Number::class,
             'options' => [
                 'label' => 'Font Size',
                 'column-size' => 'md-8',
@@ -91,20 +96,20 @@ class PdfTextLineFontFieldSet extends Fieldset implements InputFilterProviderInt
         return [
             'family' => [
                 'filters' => [
-                    ['name' => 'StripTags'],
-                    ['name' => 'StringTrim'],
+                    ['name' => StripTags::class],
+                    ['name' => StringTrim::class],
                 ],
             ],
             'weight' => [
                 'filters' => [
-                    ['name' => 'StripTags'],
-                    ['name' => 'StringTrim'],
+                    ['name' => StripTags::class],
+                    ['name' => StringTrim::class],
                 ],
             ],
             'size' => [
                 'filters' => [
-                    ['name' => 'StripTags'],
-                    ['name' => 'StringTrim'],
+                    ['name' => StripTags::class],
+                    ['name' => StringTrim::class],
                 ],
             ],
         ];

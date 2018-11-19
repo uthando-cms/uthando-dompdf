@@ -10,6 +10,7 @@
 
 namespace UthandoDomPdf\Mvc\Service;
 
+use UthandoDomPdf\View\Renderer\PdfRenderer;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use UthandoDomPdf\View\Strategy\PdfStrategy;
@@ -32,7 +33,7 @@ class ViewPdfStrategyFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $pdfRenderer = $serviceLocator->get('ViewPdfRenderer');
+        $pdfRenderer = $serviceLocator->get(PdfRenderer::class);
         $pdfStrategy = new PdfStrategy($pdfRenderer);
         
         return $pdfStrategy;

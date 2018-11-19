@@ -1,5 +1,7 @@
 <?php
 
+use UthandoDomPdf\Controller\SettingsController;
+
 return [
     'uthando_user' => [
         'acl' => [
@@ -8,14 +10,14 @@ return [
                     'privileges' => [
                         'allow' => [
                             'controllers' => [
-                                'UthandoDomPdf\Controller\Settings' => ['action' => 'all'],
+                                SettingsController::class => ['action' => 'all'],
                             ],
                         ],
                     ],
                 ],
             ],
             'resources' => [
-                'UthandoDomPdf\Controller\Settings',
+                SettingsController::class
             ],
         ],
     ],

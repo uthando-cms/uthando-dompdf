@@ -13,6 +13,13 @@ namespace UthandoDomPdf\Form;
 use TwbBundle\Form\View\Helper\TwbBundleForm;
 use UthandoCommon\Hydrator\Strategy\CollectionToArrayStrategy;
 use UthandoDomPdf\Options\PdfOptions;
+use Zend\Filter\StringTrim;
+use Zend\Filter\StripTags;
+use Zend\Filter\ToNull;
+use Zend\Form\Element\Collection;
+use Zend\Form\Element\Number;
+use Zend\Form\Element\Select;
+use Zend\Form\Element\Text;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\Hydrator\ClassMethods;
@@ -40,7 +47,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
     {
         $this->add([
             'name' => 'paper_size',
-            'type' => 'text',
+            'type' => Text::class,
             'options' => [
                 'label' => 'Paper Size',
                 'column-size' => 'md-8',
@@ -53,7 +60,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
 
         $this->add([
             'name' => 'paper_orientation',
-            'type' => 'select',
+            'type' => Select::class,
             'options' => [
                 'label' => 'Paper Orientation',
                 'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
@@ -70,7 +77,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
 
         $this->add([
             'name' => 'top_margin',
-            'type' => 'number',
+            'type' => Number::class,
             'options' => [
                 'label' => 'Top Margin',
                 'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
@@ -83,7 +90,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
 
         $this->add([
             'name' => 'right_margin',
-            'type' => 'number',
+            'type' => Number::class,
             'options' => [
                 'label' => 'Right Margin',
                 'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
@@ -96,7 +103,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
 
         $this->add([
             'name' => 'bottom_margin',
-            'type' => 'number',
+            'type' => Number::class,
             'options' => [
                 'label' => 'Bottom Margin',
                 'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
@@ -109,7 +116,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
 
         $this->add([
             'name' => 'left_margin',
-            'type' => 'number',
+            'type' => Number::class,
             'options' => [
                 'label' => 'Left Margin',
                 'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
@@ -122,7 +129,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
 
         $this->add([
             'name' => 'base_path',
-            'type' => 'text',
+            'type' => Text::class,
             'options' => [
                 'label' => 'Base Path',
                 'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
@@ -135,7 +142,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
 
         $this->add([
             'name' => 'file_name',
-            'type' => 'text',
+            'type' => Text::class,
             'options' => [
                 'label' => 'File Name',
                 'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
@@ -147,7 +154,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
         ]);
 
         $this->add([
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => Collection::class,
             'name' => 'header_lines',
             'options' => [
                 'label' => 'Add header lines to PDF',
@@ -167,7 +174,7 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
         ]);
 
         $this->add([
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => Collection::class,
             'name' => 'footer_lines',
             'options' => [
                 'label' => 'Add footer lines to PDF',
@@ -193,30 +200,30 @@ class PdfOptionsFieldSet extends Fieldset implements InputFilterProviderInterfac
             'paper_size' => [
                 'required' => true,
                 'filters' => [
-                    ['name' => 'StringTrim'],
-                    ['name' => 'StripTags'],
+                    ['name' => StripTags::class],
+                    ['name' => StringTrim::class],
                 ],
             ],
             'paper_orientation' => [
                 'required' => true,
                 'filters' => [
-                    ['name' => 'StringTrim'],
-                    ['name' => 'StripTags'],
+                    ['name' => StripTags::class],
+                    ['name' => StringTrim::class],
                 ],
             ],
             'base_path' => [
                 'required' => false,
                 'filters' => [
-                    ['name' => 'StringTrim'],
-                    ['name' => 'StripTags'],
+                    ['name' => StripTags::class],
+                    ['name' => StringTrim::class],
                 ],
             ],
             'file_name' => [
                 'required' => false,
                 'filters' => [
-                    ['name' => 'StringTrim'],
-                    ['name' => 'StripTags'],
-                    ['name' => 'ToNull'],
+                    ['name' => StripTags::class],
+                    ['name' => StringTrim::class],
+                    ['name' => ToNull::class],
                 ],
             ],
         ];

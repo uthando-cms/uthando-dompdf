@@ -12,6 +12,10 @@ namespace UthandoDomPdf\Form;
 
 use TwbBundle\Form\View\Helper\TwbBundleForm;
 use UthandoDomPdf\Model\PdfTextLine;
+use Zend\Filter\StringTrim;
+use Zend\Filter\StripTags;
+use Zend\Form\Element\Select;
+use Zend\Form\Element\Text;
 use Zend\Form\Fieldset;
 use Zend\Hydrator\ClassMethods;
 use Zend\InputFilter\InputFilterProviderInterface;
@@ -42,7 +46,7 @@ class PdfTextLineFieldSet extends Fieldset implements InputFilterProviderInterfa
     {
         $this->add([
             'name' => 'text',
-            'type' => 'text',
+            'type' => Text::class,
             'options' => [
                 'label' => 'Line Text',
                 'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
@@ -55,7 +59,7 @@ class PdfTextLineFieldSet extends Fieldset implements InputFilterProviderInterfa
 
         $this->add([
             'name' => 'position',
-            'type' => 'select',
+            'type' => Select::class,
             'options' => [
                 'label' => 'Text Position',
                 'twb-layout' => TwbBundleForm::LAYOUT_HORIZONTAL,
@@ -92,14 +96,14 @@ class PdfTextLineFieldSet extends Fieldset implements InputFilterProviderInterfa
         return [
             'text' => [
                 'filters' => [
-                    ['name' => 'StripTags'],
-                    ['name' => 'StringTrim'],
+                    ['name' => StripTags::class],
+                    ['name' => StringTrim::class],
                 ],
             ],
             'position' => [
                 'filters' => [
-                    ['name' => 'StripTags'],
-                    ['name' => 'StringTrim'],
+                    ['name' => StripTags::class],
+                    ['name' => StringTrim::class],
                 ],
             ],
         ];

@@ -10,6 +10,7 @@
 
 namespace UthandoDomPdf\Mvc\Service;
 
+use Dompdf\Dompdf;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use UthandoDomPdf\View\Renderer\PdfRenderer;
@@ -35,7 +36,7 @@ class ViewPdfRendererFactory implements FactoryInterface
         $pdfRenderer = new PdfRenderer();
         $pdfRenderer->setResolver($resolver);
         $pdfRenderer->setHtmlRenderer($renderer);
-        $pdfRenderer->setEngine($serviceLocator->get('dompdf'));
+        $pdfRenderer->setEngine($serviceLocator->get(Dompdf::class));
         
         return $pdfRenderer;
     }
